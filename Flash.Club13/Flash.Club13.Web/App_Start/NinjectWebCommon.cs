@@ -11,6 +11,12 @@ namespace Flash.Club13.Web.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using AutoMapper;
+    using System.Data.Entity;
+    using Flash.Club13.Data;
+    using Flash.Club13.Data.Repository;
+    using Flash.Club13.Data.UnitOfWork;
+    using Flash.Club13.Interfaces.Services;
+    using Flash.Club13.Services;
 
     public static class NinjectWebCommon 
     {
@@ -62,6 +68,12 @@ namespace Flash.Club13.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind(typeof(DbContext), typeof(MainDbContext)).To<MainDbContext>().InRequestScope();
+            kernel.Bind(typeof(IEfRepostory<>)).To(typeof(EfRepostory<>)).InSingletonScope();
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InSingletonScope();
+
+            kernel.Bind<ITestService>().To<TestService>().InSingletonScope();
+
             kernel.Bind<IMapper>().ToMethod(x => Mapper.Instance).InSingletonScope();
         }        
     }

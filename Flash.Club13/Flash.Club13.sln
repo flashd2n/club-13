@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flash.Club13.Interfaces.Data", "Flash.Club13.Interfaces.Data\Flash.Club13.Interfaces.Data.csproj", "{097ECC9A-12C0-448A-949B-AB58B9259882}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flash.Club13.Interfaces.Services", "Flash.Club13.Interfaces.Services\Flash.Club13.Interfaces.Services.csproj", "{51DE7933-5755-4678-98F9-ED259DC980A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{097ECC9A-12C0-448A-949B-AB58B9259882}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{097ECC9A-12C0-448A-949B-AB58B9259882}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{097ECC9A-12C0-448A-949B-AB58B9259882}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51DE7933-5755-4678-98F9-ED259DC980A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51DE7933-5755-4678-98F9-ED259DC980A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51DE7933-5755-4678-98F9-ED259DC980A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51DE7933-5755-4678-98F9-ED259DC980A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +72,7 @@ Global
 		{E7FD7226-9905-4AEF-8168-BC5DDDC69589} = {F9E37C75-E612-4A00-B60C-A1751BD4E7E6}
 		{9F035D14-52D1-455D-98D6-BEB76B096272} = {F9E37C75-E612-4A00-B60C-A1751BD4E7E6}
 		{097ECC9A-12C0-448A-949B-AB58B9259882} = {75F433F5-D8FC-4349-A970-254974607C26}
+		{51DE7933-5755-4678-98F9-ED259DC980A6} = {75F433F5-D8FC-4349-A970-254974607C26}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BE17D5AA-83CC-43A7-ACC4-62B03525BF9C}

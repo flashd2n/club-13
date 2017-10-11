@@ -309,9 +309,17 @@
       <Project>{097ECC9A-12C0-448A-949B-AB58B9259882}</Project>
       <Name>Flash.Club13.Interfaces.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Flash.Club13.Interfaces.Services\Flash.Club13.Interfaces.Services.csproj">
+      <Project>{51DE7933-5755-4678-98F9-ED259DC980A6}</Project>
+      <Name>Flash.Club13.Interfaces.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Flash.Club13.Models\Flash.Club13.Models.csproj">
       <Project>{9F035D14-52D1-455D-98D6-BEB76B096272}</Project>
       <Name>Flash.Club13.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Flash.Club13.Services\Flash.Club13.Services.csproj">
+      <Project>{B6E72143-F8B6-4867-B424-9D8C9DFCC1AB}</Project>
+      <Name>Flash.Club13.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

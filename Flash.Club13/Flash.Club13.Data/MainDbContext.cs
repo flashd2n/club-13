@@ -20,6 +20,8 @@ namespace Flash.Club13.Data
             return new MainDbContext();
         }
 
+        public IDbSet<Test> Tests { get; set; }
+
         public override int SaveChanges()
         {
             this.ApplyAuditInfo();
@@ -34,7 +36,7 @@ namespace Flash.Club13.Data
             {
                 var entity = (IAuditable)entry.Entity;
 
-                if (entry.State == EntityState.Added && entity.CreatedOn == default(DateTime))
+                if (entry.State == EntityState.Added && entity.CreatedOn == default(DateTime?))
                 {
                     entity.CreatedOn = DateTime.Now;
                 }
