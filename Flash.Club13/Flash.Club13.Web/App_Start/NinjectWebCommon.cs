@@ -17,6 +17,9 @@ namespace Flash.Club13.Web.App_Start
     using Flash.Club13.Data.UnitOfWork;
     using Flash.Club13.Interfaces.Services;
     using Flash.Club13.Services;
+    using Flash.Club13.Auth.Service.Interfaces;
+    using Flash.Club13.Auth.Service;
+    using Microsoft.AspNet.Identity.Owin;
 
     public static class NinjectWebCommon 
     {
@@ -69,6 +72,10 @@ namespace Flash.Club13.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind(typeof(DbContext), typeof(MainDbContext)).To<MainDbContext>().InRequestScope();
+
+            kernel.Bind<ISignInService>().ToMethod(_ => HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>());
+            kernel.Bind<IUserService>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());
+
             kernel.Bind(typeof(IEfRepostory<>)).To(typeof(EfRepostory<>)).InSingletonScope();
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InSingletonScope();
 

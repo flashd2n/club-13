@@ -208,10 +208,8 @@
     <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -224,7 +222,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -301,6 +298,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Flash.Club13.Auth.Service\Flash.Club13.Auth.Service.csproj">
+      <Project>{763F1AD7-9860-495D-859D-310C6A877C76}</Project>
+      <Name>Flash.Club13.Auth.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Flash.Club13.Data\Flash.Club13.Data.csproj">
       <Project>{E7FD7226-9905-4AEF-8168-BC5DDDC69589}</Project>
       <Name>Flash.Club13.Data</Name>
