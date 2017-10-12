@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Flash.Club13.Data;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,10 @@ namespace Flash.Club13.IntegrationTests
         [Test]
         public void TestingTestFunctionality()
         {
-            var a = 42;
-            var b = 72;
+            var db = new MainDbContext();
+            var testMe = db.Tests.ToList();
 
-            Assert.AreNotEqual(a, b);
+            Assert.AreEqual(testMe.Count, 0);
         }
     }
 }
