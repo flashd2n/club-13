@@ -1,1 +1,30 @@
-﻿<h1>Create Workout</h1>
+﻿@using Flash.Club13.Web.Areas.Administration.Models
+@model CreateWorkoutViewModel
+
+<h1>Create Workout</h1>
+@using (Html.BeginForm("CreateWorkout", "Manager", new { Area = "Administration" }, FormMethod.Post, null))
+{
+    @Html.LabelFor(x => x.Name)
+    @Html.EditorFor(x => x.Name)
+
+    @Html.LabelFor(x => x.Description)
+    @Html.TextAreaFor(x => x.Description);
+
+    @Html.LabelFor(x => x.VideoLink)
+    @Html.EditorFor(x => x.VideoLink)
+
+    <p>Select Exercises</p>
+
+    for (int i = 0; i < Model.AllExercises.Count; i++)
+    {
+        @Html.CheckBoxFor(x => x.AllExercises[i].IsSelected)
+
+        @Html.HiddenFor(x => x.AllExercises[i].Id)
+        @*@Model.Exercises[i].Id*@
+
+        @Html.HiddenFor(x => x.AllExercises[i].Name)
+        @Model.AllExercises[i].Name
+    }
+
+    <button type="submit">Create!</button>
+}

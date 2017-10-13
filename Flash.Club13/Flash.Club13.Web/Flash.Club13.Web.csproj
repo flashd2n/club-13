@@ -213,6 +213,8 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Administration\Models\CreateExerciseViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\CreateWorkoutViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\ExerciseMutipleSelectionViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />

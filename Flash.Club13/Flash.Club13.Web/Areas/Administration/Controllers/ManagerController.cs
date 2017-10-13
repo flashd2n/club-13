@@ -15,11 +15,13 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
     {
         private readonly IMapper mapper;
         private readonly IExerciseService exerciseService;
+        private readonly IWorkoutInformationService workoutInformationService;
 
-        public ManagerController(IMapper mapper, IExerciseService exerciseService)
+        public ManagerController(IMapper mapper, IExerciseService exerciseService, IWorkoutInformationService workoutInformationService)
         {
             this.mapper = mapper;
             this.exerciseService = exerciseService;
+            this.workoutInformationService = workoutInformationService;
         }
 
         public ActionResult Index()
@@ -46,12 +48,42 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult CreateWorkout()
         {
-            return this.View();
+            var allExercises = this.exerciseService.GetAll();
+
+            var allExercisesViews = new List<ExerciseMutipleSelectionViewModel>();
+
+            foreach (var exercise in allExercises)
+            {
+                var viewExercise = this.mapper.Map<ExerciseMutipleSelectionViewModel>(exercise);
+                allExercisesViews.Add(viewExercise);
+            }
+
+            var model = new CreateWorkoutViewModel();
+            model.AllExercises = allExercisesViews;
+
+            return this.View(model);
         }
 
         [HttpPost]
-        public ActionResult CreateWorkout(object workout)
+        public ActionResult CreateWorkout(CreateWorkoutViewModel workout)
         {
+            var workoutDataModel = this.mapper.Map<WorkoutInformation>(workout);
+
+            this.workoutInformationService.AddWorkoutInformation(workoutDataModel);
+
+            var validExercisesIds = workout.AllExercises.Where(x => x.IsSelected == true).Select(x => x.Id).ToList();
+
+            var validExerciseDataModels = new List<Exercise>();
+
+            foreach (var id in validExercisesIds)
+            {
+                var exerciseToInsert = this.exerciseService.GetById(id);
+
+                validExerciseDataModels.Add(exerciseToInsert);
+            }
+
+            this.workoutInformationService.InsertMultipleExercisesToWorkoutInformation(workoutDataModel, validExerciseDataModels);
+
             return this.RedirectToAction("Index");
         }
 

@@ -46,6 +46,7 @@
     <Compile Include="MemberAccountService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestService.cs" />
+    <Compile Include="WorkoutInformationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Flash.Club13.Data\Flash.Club13.Data.csproj">

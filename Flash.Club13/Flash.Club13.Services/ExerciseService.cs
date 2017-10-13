@@ -2,6 +2,7 @@
 using Flash.Club13.Data.UnitOfWork;
 using Flash.Club13.Interfaces.Services;
 using Flash.Club13.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,6 +22,16 @@ namespace Flash.Club13.Services
         public ICollection<Exercise> GetAll()
         {
             return this.exercisesRepo.All.ToList();
+        }
+
+        public ICollection<string> GetAllExerciseNames()
+        {
+            return this.exercisesRepo.All.Select(exercise => exercise.Name).ToList();
+        }
+
+        public Exercise GetById(Guid id)
+        {
+            return this.exercisesRepo.All.FirstOrDefault(x => x.Id == id);
         }
 
         public void Update(Exercise exercise)
