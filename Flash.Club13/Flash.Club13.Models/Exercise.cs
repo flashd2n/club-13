@@ -1,14 +1,23 @@
 ﻿using Flash.Club13.Models.Abstracts;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Flash.Club13.Models
 {
     public class Exercise : DataModel
     {
+        private ICollection<WorkoutInformation> workouts;
+
+        public Exercise()
+        {
+            this.workouts = new HashSet<WorkoutInformation>();
+        }
+
         public string Name { get; set; }
+
+        public virtual ICollection<WorkoutInformation> Workouts
+        {
+            get { return this.workouts; }
+            set { this.workouts = value; }
+        }
     }
 }

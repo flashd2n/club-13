@@ -78,6 +78,10 @@
     <Compile Include="Migrations\201710130841474_FixedManyToManyDailyWorkoutsToMembersRelation.Designer.cs">
       <DependentUpon>201710130841474_FixedManyToManyDailyWorkoutsToMembersRelation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710131329229_FixedManyToManyRelationExercisesWorkoutInformations.cs" />
+    <Compile Include="Migrations\201710131329229_FixedManyToManyRelationExercisesWorkoutInformations.Designer.cs">
+      <DependentUpon>201710131329229_FixedManyToManyRelationExercisesWorkoutInformations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\EfRepostory.cs" />
@@ -117,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710130841474_FixedManyToManyDailyWorkoutsToMembersRelation.resx">
       <DependentUpon>201710130841474_FixedManyToManyDailyWorkoutsToMembersRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131329229_FixedManyToManyRelationExercisesWorkoutInformations.resx">
+      <DependentUpon>201710131329229_FixedManyToManyRelationExercisesWorkoutInformations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

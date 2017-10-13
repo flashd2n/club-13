@@ -210,6 +210,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\ManagerController.cs" />
+    <Compile Include="Areas\Administration\Models\CreateExerciseViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -233,6 +236,12 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Administration\Views\web.config" />
+    <Content Include="Areas\Administration\Views\Manager\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Administration\Views\Manager\CreateWorkout.cshtml" />
+    <Content Include="Areas\Administration\Views\Manager\CreateSchedule.cshtml" />
+    <Content Include="Areas\Administration\Views\Manager\CreateExercise.cshtml" />
     <None Include="Properties\PublishProfiles\club13 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\club13 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
@@ -284,6 +293,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Administration\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -76,10 +76,11 @@ namespace Flash.Club13.Web.App_Start
             kernel.Bind<ISignInService>().ToMethod(_ => HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>());
             kernel.Bind<IUserService>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());
 
-            kernel.Bind(typeof(IEfRepostory<>)).To(typeof(EfRepostory<>)).InSingletonScope();
-            kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InSingletonScope();
+            kernel.Bind(typeof(IEfRepostory<>)).To(typeof(EfRepostory<>)).InRequestScope();
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
 
-            kernel.Bind<ITestService>().To<TestService>().InSingletonScope();
+            kernel.Bind<ITestService>().To<TestService>().InRequestScope();
+            kernel.Bind<IExerciseService>().To<ExerciseService>().InRequestScope();
 
             kernel.Bind<IMapper>().ToMethod(x => Mapper.Instance).InSingletonScope();
         }        
