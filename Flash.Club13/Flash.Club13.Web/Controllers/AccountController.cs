@@ -11,6 +11,10 @@ using Microsoft.Owin.Security;
 using Flash.Club13.Web.Models;
 using Flash.Club13.Models;
 using Flash.Club13.Auth.Service.Interfaces;
+using Flash.Club13.Interfaces.Services;
+using Flash.Club13.Models.Enums;
+using Flash.Club13.Auth.Service;
+using Flash.Club13.Data;
 
 namespace Flash.Club13.Web.Controllers
 {
@@ -129,6 +133,16 @@ namespace Flash.Club13.Web.Controllers
                 var result = await this.userService.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var member = new Member();
+                    member.FirstName = "Gosho";
+                    member.LastName = "Goshov";
+                    member.Gender = Gender.Male;
+                    member.UserId = user.Id;
+
+                    var service = new MemberAccountService(HttpContext.GetOwinContext().Get<MainDbContext>());
+
+                    service.CreateMemberAccount(member);
+
                     await this.signInService.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
