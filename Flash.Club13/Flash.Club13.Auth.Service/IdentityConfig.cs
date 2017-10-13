@@ -85,6 +85,11 @@ namespace Flash.Club13.Auth.Service
             return manager;
         }
 
+        public IdentityResult AddToRole(string userId, string role)
+        {
+            return UserManagerExtensions.AddToRole(this, userId, role);
+        }
+
         public User FindById(string userId)
         {
             return UserManagerExtensions.FindById(this, userId);

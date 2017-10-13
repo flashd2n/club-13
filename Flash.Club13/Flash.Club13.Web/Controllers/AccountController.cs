@@ -15,6 +15,7 @@ using Flash.Club13.Interfaces.Services;
 using Flash.Club13.Models.Enums;
 using Flash.Club13.Auth.Service;
 using Flash.Club13.Data;
+using Flash.Club13.Services;
 
 namespace Flash.Club13.Web.Controllers
 {
@@ -142,6 +143,8 @@ namespace Flash.Club13.Web.Controllers
                     var service = new MemberAccountService(HttpContext.GetOwinContext().Get<MainDbContext>());
 
                     service.CreateMemberAccount(member);
+
+                    this.userService.AddToRole(user.Id, "User");
 
                     await this.signInService.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     

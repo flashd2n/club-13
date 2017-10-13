@@ -51,5 +51,7 @@ namespace Flash.Club13.Auth.Service.Interfaces
         Task<IdentityResult> AddPasswordAsync(string userId, string password);
 
         User FindById(string userId);
+
+        IdentityResult AddToRole(string userId, string role);
     }
 }

@@ -9,10 +9,12 @@ namespace Flash.Club13.Models
     public class Member : DataModel
     {
         private ICollection<Workout> workouts;
+        private ICollection<DailyWorkout> dailyWorkouts;
 
         public Member()
         {
             this.workouts = new HashSet<Workout>();
+            this.dailyWorkouts = new HashSet<DailyWorkout>();
         }
 
         public string FirstName { get; set; }
@@ -21,10 +23,16 @@ namespace Flash.Club13.Models
 
         public Gender Gender { get; set; }
 
-        public ICollection<Workout> Workouts
+        public virtual ICollection<Workout> Workouts
         {
             get { return this.workouts; }
             set { this.workouts = value; }
+        }
+
+        public virtual ICollection<DailyWorkout> DailyWorkouts
+        {
+            get { return this.dailyWorkouts; }
+            set { this.dailyWorkouts = value; }
         }
 
         [ForeignKey("User")]

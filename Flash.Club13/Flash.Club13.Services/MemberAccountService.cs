@@ -1,7 +1,7 @@
 ﻿using Flash.Club13.Data;
 using Flash.Club13.Models;
 
-namespace Flash.Club13.Auth.Service
+namespace Flash.Club13.Services
 {
     public class MemberAccountService
     {

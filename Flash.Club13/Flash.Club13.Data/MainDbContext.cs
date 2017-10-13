@@ -30,6 +30,10 @@ namespace Flash.Club13.Data
 
         public IDbSet<Member> Members { get; set; }
 
+        public IDbSet<DailyWorkout> DailyWorkouts { get; set; }
+
+        public IDbSet<WeekSchedule> WeekSchedules { get; set; }
+
         public override int SaveChanges()
         {
             this.ApplyAuditInfo();
@@ -46,7 +50,33 @@ namespace Flash.Club13.Data
 
             this.OnMemberBuilding(modelBuilder);
 
+            this.OnDailyWorkoutBuilding(modelBuilder);
+
+            this.OnWeekScheduleBuilding(modelBuilder);
+
             base.OnModelCreating(modelBuilder);
+        }
+
+        private void OnWeekScheduleBuilding(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<WeekSchedule>()
+                .Property(weekSchedule => weekSchedule.WeekStart)
+                .IsRequired();
+
+            modelBuilder.Entity<WeekSchedule>()
+                .Property(weekSchedule => weekSchedule.WeekEnd)
+                .IsRequired();
+        }
+
+        private void OnDailyWorkoutBuilding(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<DailyWorkout>()
+                .Property(dailyWorkout => dailyWorkout.Day)
+                .IsRequired()
+                .HasMaxLength(60);
+
+            modelBuilder.Entity<DailyWorkout>()
+                .HasRequired(dailyWorkout => dailyWorkout.WorkoutInformation);
         }
 
         private void OnMemberBuilding(DbModelBuilder modelBuilder)
