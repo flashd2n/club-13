@@ -26,6 +26,11 @@ namespace Flash.Club13.Services
             return this.dailyWorkoutRepo.All.ToList();
         }
 
+        public DailyWorkout GetById(Guid id)
+        {
+            return this.dailyWorkoutRepo.All.FirstOrDefault(x => x.Id == id);
+        }
+
         public void Update(DailyWorkout dailyWorkout)
         {
             this.dailyWorkoutRepo.Update(dailyWorkout);
@@ -36,6 +41,12 @@ namespace Flash.Club13.Services
         {
             this.dailyWorkoutRepo.Add(dailyWorkout);
             this.unitOfWork.Commit();
+        }
+
+        public void AddMemberToDailyWorkout(Member member, DailyWorkout workout)
+        {
+            workout.SignedMembers.Add(member);
+            this.Update(workout);
         }
 
         public void AddAllDailyWorkouts(params DailyWorkout[] dailyWorkouts)

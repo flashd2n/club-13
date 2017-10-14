@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="IDailyWorkoutService.cs" />
     <Compile Include="IExerciseService.cs" />
+    <Compile Include="IMemberService.cs" />
     <Compile Include="ITestService.cs" />
     <Compile Include="IWeekScheduleService.cs" />
     <Compile Include="IWorkoutInformationService.cs" />

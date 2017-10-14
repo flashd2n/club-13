@@ -1,3 +1,21 @@
-﻿<p>WoD Sign Up Options</p>
-    @*// list the three possible WoD for the day
-    // template morning -> sign up*@
+﻿@using Flash.Club13.Web.Models.Home
+@model SignUpWoDViewModel
+
+<h4>Sign up for WoD</h4>
+
+@if (Model.IsSigned == true)
+{
+    <p>You are signed for @Model.SignedDailyWoD.StartTime workout!</p>
+}
+else
+{
+    <div id="signUpWoDForm">
+        @using (Ajax.BeginForm("SignUpForWorkout", "Workout", new AjaxOptions { HttpMethod = "POST", OnSuccess = "updateUi", UpdateTargetId = "signUpWoDForm", InsertionMode = InsertionMode.Replace }))
+        {
+        @Html.DropDownListFor(model => model.SelectedWoDId, new SelectList(Model.AllDailyWoDs, "Id", "StartTime"), "- Please Select -")
+
+        <input type="submit" value="Submit" />
+        }
+    </div>
+
+}

@@ -1,0 +1,14 @@
+﻿using Flash.Club13.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Flash.Club13.Interfaces.Services
+{
+    public interface IMemberService
+    {
+        Member GetByUserId(string id);
+    }
+}

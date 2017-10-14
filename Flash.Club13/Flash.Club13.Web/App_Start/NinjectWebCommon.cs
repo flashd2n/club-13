@@ -22,6 +22,7 @@ namespace Flash.Club13.Web.App_Start
     using Microsoft.AspNet.Identity.Owin;
     using Flash.Club13.Interfaces.Providers;
     using Flash.Club13.Services.Providers;
+    using Flash.Club13.Web.Infrastructure.Providers;
 
     public static class NinjectWebCommon 
     {
@@ -82,13 +83,14 @@ namespace Flash.Club13.Web.App_Start
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
 
             kernel.Bind<IDatetimeProvider>().To<DatetimeProvider>().InRequestScope();
+            kernel.Bind<IMemberIdProvider>().To<MemberIdProvider>().InRequestScope();
 
             kernel.Bind<ITestService>().To<TestService>().InRequestScope();
             kernel.Bind<IExerciseService>().To<ExerciseService>().InRequestScope();
             kernel.Bind<IWorkoutInformationService>().To<WorkoutInformationService>().InRequestScope();
             kernel.Bind<IWeekScheduleService>().To<WeekScheduleService>().InRequestScope();
             kernel.Bind<IDailyWorkoutService>().To<DailyWorkoutService>().InRequestScope();
-
+            kernel.Bind<IMemberService>().To<MemberService>().InRequestScope();
 
             kernel.Bind<IMapper>().ToMethod(x => Mapper.Instance).InSingletonScope();
         }        
