@@ -1,0 +1,10 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <li><a href="">Week Schedule</a></li>
+    <li><a href="">My Stats</a></li>
+    if (User.IsInRole("Admin"))
+    {
+        <li>@Html.ActionLink("Administration", "Index", "Manager", new { Area = "Administration" }, new { })</li>
+    }
+}

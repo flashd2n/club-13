@@ -1,5 +1,6 @@
 ﻿using Flash.Club13.Data.Repository;
 using Flash.Club13.Data.UnitOfWork;
+using Flash.Club13.Interfaces.Providers;
 using Flash.Club13.Interfaces.Services;
 using Flash.Club13.Models;
 using System;
@@ -14,11 +15,13 @@ namespace Flash.Club13.Services
     {
         private readonly IEfRepostory<WeekSchedule> weekScheduleRepo;
         private readonly IUnitOfWork unitOfWork;
+        private readonly IDatetimeProvider datetimeProvider;
 
-        public WeekScheduleService(IEfRepostory<WeekSchedule> weekScheduleRepo, IUnitOfWork unitOfWork)
+        public WeekScheduleService(IEfRepostory<WeekSchedule> weekScheduleRepo, IUnitOfWork unitOfWork, IDatetimeProvider datetimeProvider)
         {
             this.weekScheduleRepo = weekScheduleRepo;
             this.unitOfWork = unitOfWork;
+            this.datetimeProvider = datetimeProvider;
         }
 
         public ICollection<WeekSchedule> GetAll()
@@ -34,6 +37,13 @@ namespace Flash.Club13.Services
         public ICollection<WeekSchedule> GetAllDescending()
         {
             return this.weekScheduleRepo.All.OrderByDescending(x => x.WeekStart).ToList();
+        }
+
+        public WeekSchedule GetCurrentSchedule()
+        {
+            var today = this.datetimeProvider.GetToday();
+            var schedule = this.weekScheduleRepo.All.FirstOrDefault(x => today < x.WeekEnd && today > x.WeekStart);
+            return schedule;
         }
 
         public void Update(WeekSchedule weekSchedule)

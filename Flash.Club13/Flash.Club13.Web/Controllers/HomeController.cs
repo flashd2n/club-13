@@ -10,22 +10,12 @@ namespace Flash.Club13.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ITestService testService;
-
-        public HomeController(ITestService testService)
+        public HomeController()
         {
-            this.testService = testService;
         }
 
         public ActionResult Index()
         {
-            var test = new Test()
-            {
-                Name = "PLSWORK",
-                Value = 42
-            };
-            this.testService.AddTest(test);
-
             return View();
         }
 

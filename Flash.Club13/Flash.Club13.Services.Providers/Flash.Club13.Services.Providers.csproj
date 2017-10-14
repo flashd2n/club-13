@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B6E72143-F8B6-4867-B424-9D8C9DFCC1AB}</ProjectGuid>
+    <ProjectGuid>{54AE8E3B-C64D-4DE3-8425-87B65F525BD0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Flash.Club13.Services</RootNamespace>
-    <AssemblyName>Flash.Club13.Services</AssemblyName>
+    <RootNamespace>Flash.Club13.Services.Providers</RootNamespace>
+    <AssemblyName>Flash.Club13.Services.Providers</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,8 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,34 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DailyWorkoutService.cs" />
-    <Compile Include="ExerciseService.cs" />
-    <Compile Include="MemberAccountService.cs" />
+    <Compile Include="DatetimeProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestService.cs" />
-    <Compile Include="WeekScheduleService.cs" />
-    <Compile Include="WorkoutInformationService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Flash.Club13.Data\Flash.Club13.Data.csproj">
-      <Project>{E7FD7226-9905-4AEF-8168-BC5DDDC69589}</Project>
-      <Name>Flash.Club13.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Flash.Club13.Interfaces.Data\Flash.Club13.Interfaces.Data.csproj">
-      <Project>{097ECC9A-12C0-448A-949B-AB58B9259882}</Project>
-      <Name>Flash.Club13.Interfaces.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Flash.Club13.Interfaces.Providers\Flash.Club13.Interfaces.Providers.csproj">
       <Project>{8D0A6E1A-857C-4535-856D-600C1EEC3E2E}</Project>
       <Name>Flash.Club13.Interfaces.Providers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Flash.Club13.Interfaces.Services\Flash.Club13.Interfaces.Services.csproj">
-      <Project>{51DE7933-5755-4678-98F9-ED259DC980A6}</Project>
-      <Name>Flash.Club13.Interfaces.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Flash.Club13.Models\Flash.Club13.Models.csproj">
-      <Project>{9F035D14-52D1-455D-98D6-BEB76B096272}</Project>
-      <Name>Flash.Club13.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

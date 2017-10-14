@@ -12,6 +12,8 @@ namespace Flash.Club13.Interfaces.Services
 
         ICollection<WeekSchedule> GetAllDescending();
 
+        WeekSchedule GetCurrentSchedule();
+
         void Update(WeekSchedule weekSchedule);
 
         void AddWeekSchedule(WeekSchedule weekSchedule);

@@ -213,7 +213,7 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Administration\Controllers\ScheduleController.cs" />
-    <Compile Include="Areas\Administration\Controllers\WorkoutController.cs" />
+    <Compile Include="Controllers\WorkoutController.cs" />
     <Compile Include="Areas\Administration\Models\Manager\CreateExerciseViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Manager\CreateWeekScheduleViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Manager\CreateWorkoutViewModel.cs" />
@@ -233,6 +233,8 @@
     <Compile Include="Infrastructure\Automapper\QueriableExtensions.cs" />
     <Compile Include="Infrastructure\Automapper\ÌHaveCustomMappings.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Home\HomeWoDViewModel.cs" />
+    <Compile Include="Models\Home\IndexViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -305,6 +307,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_MemberControls.cshtml" />
+    <Content Include="Views\Shared\_HomeWoDSignUp.cshtml" />
+    <Content Include="Views\Shared\_HomeWoDPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -335,6 +340,10 @@
       <Project>{097ECC9A-12C0-448A-949B-AB58B9259882}</Project>
       <Name>Flash.Club13.Interfaces.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Flash.Club13.Interfaces.Providers\Flash.Club13.Interfaces.Providers.csproj">
+      <Project>{8D0A6E1A-857C-4535-856D-600C1EEC3E2E}</Project>
+      <Name>Flash.Club13.Interfaces.Providers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Flash.Club13.Interfaces.Services\Flash.Club13.Interfaces.Services.csproj">
       <Project>{51DE7933-5755-4678-98F9-ED259DC980A6}</Project>
       <Name>Flash.Club13.Interfaces.Services</Name>
@@ -342,6 +351,10 @@
     <ProjectReference Include="..\Flash.Club13.Models\Flash.Club13.Models.csproj">
       <Project>{9F035D14-52D1-455D-98D6-BEB76B096272}</Project>
       <Name>Flash.Club13.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Flash.Club13.Services.Providers\Flash.Club13.Services.Providers.csproj">
+      <Project>{54AE8E3B-C64D-4DE3-8425-87B65F525BD0}</Project>
+      <Name>Flash.Club13.Services.Providers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Flash.Club13.Services\Flash.Club13.Services.csproj">
       <Project>{B6E72143-F8B6-4867-B424-9D8C9DFCC1AB}</Project>

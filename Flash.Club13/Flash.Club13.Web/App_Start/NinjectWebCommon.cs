@@ -20,6 +20,8 @@ namespace Flash.Club13.Web.App_Start
     using Flash.Club13.Auth.Service.Interfaces;
     using Flash.Club13.Auth.Service;
     using Microsoft.AspNet.Identity.Owin;
+    using Flash.Club13.Interfaces.Providers;
+    using Flash.Club13.Services.Providers;
 
     public static class NinjectWebCommon 
     {
@@ -78,6 +80,8 @@ namespace Flash.Club13.Web.App_Start
 
             kernel.Bind(typeof(IEfRepostory<>)).To(typeof(EfRepostory<>)).InRequestScope();
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+
+            kernel.Bind<IDatetimeProvider>().To<DatetimeProvider>().InRequestScope();
 
             kernel.Bind<ITestService>().To<TestService>().InRequestScope();
             kernel.Bind<IExerciseService>().To<ExerciseService>().InRequestScope();

@@ -37,7 +37,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $.get('/administration/workout/getworkoutnames', function (data) {
+            $.get('/workout/getworkoutnames', function (data) {
                 $.each(data, function (index, value) {
                     $('<option>').val(value).text(value).appendTo('#Monday');
                     $('<option>').val(value).text(value).appendTo('#Tuesday');
