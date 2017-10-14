@@ -1,1 +1,15 @@
-﻿<h1>CREATE SCHEDULE</h1>
+﻿@using Flash.Club13.Web.Areas.Administration.Models
+@model CreateWeekScheduleViewModel
+
+<h1>CREATE SCHEDULE</h1>
+
+@using (Html.BeginForm("CreateSchedule", "Manager", new { Area = "Administration" }, FormMethod.Post, null))
+{
+    @Html.LabelFor(x => x.WeekStart)
+    @Html.EditorFor(x => x.WeekStart)
+
+    @Html.LabelFor(x => x.WeekEnd)
+    @Html.EditorFor(x => x.WeekEnd)
+
+    <button type="submit">Create!</button>
+}

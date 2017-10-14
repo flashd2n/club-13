@@ -1,15 +1,15 @@
 ﻿using Flash.Club13.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Flash.Club13.Interfaces.Services
 {
     public interface IWorkoutInformationService
     {
         ICollection<WorkoutInformation> GetAll();
+
+        ICollection<string> GetAllNames();
+
+        WorkoutInformation GetByName(string name);
 
         void Update(WorkoutInformation workoutInformation);
 

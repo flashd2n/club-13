@@ -75,6 +75,14 @@ namespace Flash.Club13.Data
                 .IsRequired()
                 .HasMaxLength(60);
 
+            //modelBuilder.Entity<DailyWorkout>()
+            //    .Property(dailyWorkout => dailyWorkout.StartTime)
+            //    .IsRequired();
+
+            modelBuilder.Entity<DailyWorkout>()
+                .Property(dailyWorkout => dailyWorkout.DurationInMinutes)
+                .IsRequired();
+
             modelBuilder.Entity<DailyWorkout>()
                 .HasRequired(dailyWorkout => dailyWorkout.WorkoutInformation);
         }

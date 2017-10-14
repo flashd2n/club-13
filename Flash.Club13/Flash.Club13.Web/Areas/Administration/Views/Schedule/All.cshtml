@@ -1,0 +1,11 @@
+﻿@using Flash.Club13.Web.Areas.Administration.Models.Schedule
+@model AllSchedulesViewModel
+
+<h1>ALL SCHEDULES</h1>
+
+@foreach(var schedule in Model.Schedules)
+{
+    @Html.Partial("_SchedulePartial", schedule);
+    @Html.ActionLink("Edit", "Edit", "Schedule", new { Area = "Administration", id = schedule.Id}, new { });
+    <br />
+}

@@ -26,6 +26,16 @@ namespace Flash.Club13.Services
             return this.workoutInformationRepo.All.ToList();
         }
 
+        public ICollection<string> GetAllNames()
+        {
+            return this.workoutInformationRepo.All.Select(x => x.Name).ToList();
+        }
+
+        public WorkoutInformation GetByName(string name)
+        {
+            return this.workoutInformationRepo.All.FirstOrDefault(x => x.Name == name);
+        }
+
         public void Update(WorkoutInformation workoutInformation)
         {
             this.workoutInformationRepo.Update(workoutInformation);

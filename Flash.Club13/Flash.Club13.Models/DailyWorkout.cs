@@ -1,4 +1,5 @@
 ﻿using Flash.Club13.Models.Abstracts;
+using Flash.Club13.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,6 +16,10 @@ namespace Flash.Club13.Models
         }
 
         public string Day { get; set; }
+
+        public TimeOfDay StartTime { get; set; }
+
+        public int DurationInMinutes { get; set; }
 
         [ForeignKey("WorkoutInformation")]
         public Guid WorkoutInformationId { get; set; }

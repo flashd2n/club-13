@@ -1,0 +1,33 @@
+﻿@using Flash.Club13.Web.Areas.Administration.Models.Schedule
+@using System.Collections.Generic;
+@model EditScheduleViewModel
+
+@{
+    string key = (string)ViewData["day"];
+
+    if (Model.AllWorkouts.ContainsKey(key))
+    {
+        <p>@Model.AllWorkouts[key].Name</p>
+    }
+    else
+    {
+        string idKey = "content" + (string)ViewData["day"];
+        <div id=@idKey>
+            @using (Ajax.BeginForm("Edit", "Schedule", new AjaxOptions { HttpMethod = "POST", OnSuccess = "updateUi", UpdateTargetId = idKey, InsertionMode = InsertionMode.Replace }))
+                {
+                <input type="hidden" name="Day" value=@ViewData["day"]>
+
+                <input type="hidden" name="ScheduleId" value=@Model.Id>
+
+                <label for="DurationInMinutes">Duration In Minutes</label>
+                    <input name="DurationInMinutes" type="number" id="DurationInMinutes" />
+
+                    <select id=@key name="Name">
+                        <option>Select Workout</option>
+                    </select>
+
+                    <input type="submit" value="Submit" />
+            }
+        </div>
+    }
+}

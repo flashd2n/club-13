@@ -82,6 +82,9 @@ namespace Flash.Club13.Web.App_Start
             kernel.Bind<ITestService>().To<TestService>().InRequestScope();
             kernel.Bind<IExerciseService>().To<ExerciseService>().InRequestScope();
             kernel.Bind<IWorkoutInformationService>().To<WorkoutInformationService>().InRequestScope();
+            kernel.Bind<IWeekScheduleService>().To<WeekScheduleService>().InRequestScope();
+            kernel.Bind<IDailyWorkoutService>().To<DailyWorkoutService>().InRequestScope();
+
 
             kernel.Bind<IMapper>().ToMethod(x => Mapper.Instance).InSingletonScope();
         }        

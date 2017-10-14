@@ -212,9 +212,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\ManagerController.cs" />
-    <Compile Include="Areas\Administration\Models\CreateExerciseViewModel.cs" />
-    <Compile Include="Areas\Administration\Models\CreateWorkoutViewModel.cs" />
-    <Compile Include="Areas\Administration\Models\ExerciseMutipleSelectionViewModel.cs" />
+    <Compile Include="Areas\Administration\Controllers\ScheduleController.cs" />
+    <Compile Include="Areas\Administration\Controllers\WorkoutController.cs" />
+    <Compile Include="Areas\Administration\Models\Manager\CreateExerciseViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\Manager\CreateWeekScheduleViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\Manager\CreateWorkoutViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\Manager\ExerciseMutipleSelectionViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\Schedule\AllSchedulesViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\Schedule\DailyWorkoutViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\Schedule\EditScheduleViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\Schedule\ScheduleViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -244,6 +251,10 @@
     <Content Include="Areas\Administration\Views\Manager\CreateWorkout.cshtml" />
     <Content Include="Areas\Administration\Views\Manager\CreateSchedule.cshtml" />
     <Content Include="Areas\Administration\Views\Manager\CreateExercise.cshtml" />
+    <Content Include="Areas\Administration\Views\Schedule\All.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_SchedulePartial.cshtml" />
+    <Content Include="Areas\Administration\Views\Schedule\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_EditScheduleDailyPartial.cshtml" />
     <None Include="Properties\PublishProfiles\club13 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\club13 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
@@ -251,6 +262,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -295,7 +308,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

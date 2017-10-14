@@ -82,6 +82,18 @@
     <Compile Include="Migrations\201710131329229_FixedManyToManyRelationExercisesWorkoutInformations.Designer.cs">
       <DependentUpon>201710131329229_FixedManyToManyRelationExercisesWorkoutInformations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710131916410_AddedStartTimeAndDurationForDailyWorkouts.cs" />
+    <Compile Include="Migrations\201710131916410_AddedStartTimeAndDurationForDailyWorkouts.Designer.cs">
+      <DependentUpon>201710131916410_AddedStartTimeAndDurationForDailyWorkouts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710141153270_RemovedStartTimeDaily.cs" />
+    <Compile Include="Migrations\201710141153270_RemovedStartTimeDaily.Designer.cs">
+      <DependentUpon>201710141153270_RemovedStartTimeDaily.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710141155372_AddedDailyStartTimeEnum.cs" />
+    <Compile Include="Migrations\201710141155372_AddedDailyStartTimeEnum.Designer.cs">
+      <DependentUpon>201710141155372_AddedDailyStartTimeEnum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\EfRepostory.cs" />
@@ -124,6 +136,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710131329229_FixedManyToManyRelationExercisesWorkoutInformations.resx">
       <DependentUpon>201710131329229_FixedManyToManyRelationExercisesWorkoutInformations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131916410_AddedStartTimeAndDurationForDailyWorkouts.resx">
+      <DependentUpon>201710131916410_AddedStartTimeAndDurationForDailyWorkouts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710141153270_RemovedStartTimeDaily.resx">
+      <DependentUpon>201710141153270_RemovedStartTimeDaily.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710141155372_AddedDailyStartTimeEnum.resx">
+      <DependentUpon>201710141155372_AddedDailyStartTimeEnum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

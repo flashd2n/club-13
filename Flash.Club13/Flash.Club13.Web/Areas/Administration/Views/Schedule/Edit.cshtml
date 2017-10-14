@@ -1,0 +1,57 @@
+﻿@using Flash.Club13.Web.Areas.Administration.Models.Schedule
+@using System.Collections.Generic;
+@model EditScheduleViewModel
+
+<h1>Start: @Html.DisplayFor(x => x.WeekStart) -> End: @Html.DisplayFor(x => x.WeekEnd)</h1>
+
+<h2>Monday</h2>
+@Html.Partial("_EditScheduleDailyPartial", Model, new ViewDataDictionary { { "day", "Monday" } })
+<br />
+
+<h2>Tuesday</h2>
+@Html.Partial("_EditScheduleDailyPartial", Model, new ViewDataDictionary { { "day", "Tuesday" } })
+<br />
+
+<h2>Wednesday</h2>
+@Html.Partial("_EditScheduleDailyPartial", Model, new ViewDataDictionary { { "day", "Wednesday" } })
+<br />
+
+<h2>Thursday</h2>
+@Html.Partial("_EditScheduleDailyPartial", Model, new ViewDataDictionary { { "day", "Thursday" } })
+<br />
+
+<h2>Friday</h2>
+@Html.Partial("_EditScheduleDailyPartial", Model, new ViewDataDictionary { { "day", "Friday" } })
+<br />
+
+<h2>Saturday</h2>
+@Html.Partial("_EditScheduleDailyPartial", Model, new ViewDataDictionary { { "day", "Saturday" } })
+<br />
+
+<h2>Sunday</h2>
+@Html.Partial("_EditScheduleDailyPartial", Model, new ViewDataDictionary { { "day", "Sunday" } })
+<br />
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryunob")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.get('/administration/workout/getworkoutnames', function (data) {
+                $.each(data, function (index, value) {
+                    $('<option>').val(value).text(value).appendTo('#Monday');
+                    $('<option>').val(value).text(value).appendTo('#Tuesday');
+                    $('<option>').val(value).text(value).appendTo('#Wednesday');
+                    $('<option>').val(value).text(value).appendTo('#Thursday');
+                    $('<option>').val(value).text(value).appendTo('#Friday');
+                    $('<option>').val(value).text(value).appendTo('#Saturday');
+                    $('<option>').val(value).text(value).appendTo('#Sunday');
+                })
+            })
+        })
+
+        function updateUi(res) {
+            console.log(res)
+        }
+    </script>
+}

@@ -2,10 +2,8 @@
 using Flash.Club13.Interfaces.Services;
 using Flash.Club13.Models;
 using Flash.Club13.Web.Areas.Administration.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Flash.Club13.Web.Areas.Administration.Controllers
@@ -16,12 +14,14 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
         private readonly IMapper mapper;
         private readonly IExerciseService exerciseService;
         private readonly IWorkoutInformationService workoutInformationService;
+        private readonly IWeekScheduleService weekScheduleService;
 
-        public ManagerController(IMapper mapper, IExerciseService exerciseService, IWorkoutInformationService workoutInformationService)
+        public ManagerController(IMapper mapper, IExerciseService exerciseService, IWorkoutInformationService workoutInformationService, IWeekScheduleService weekScheduleService)
         {
             this.mapper = mapper;
             this.exerciseService = exerciseService;
             this.workoutInformationService = workoutInformationService;
+            this.weekScheduleService = weekScheduleService;
         }
 
         public ActionResult Index()
@@ -94,9 +94,13 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateSchedule(object schedule)
+        public ActionResult CreateSchedule(CreateWeekScheduleViewModel schedule)
         {
-            return this.RedirectToAction("Index");
+            var scheduleDataModel = this.mapper.Map<WeekSchedule>(schedule);
+
+            this.weekScheduleService.AddWeekSchedule(scheduleDataModel);
+
+            return this.RedirectToAction("Edit", "Schedule", new { id = scheduleDataModel.Id });
         }
     }
 }
