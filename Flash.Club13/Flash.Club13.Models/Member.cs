@@ -10,11 +10,13 @@ namespace Flash.Club13.Models
     {
         private ICollection<Workout> workouts;
         private ICollection<DailyWorkout> dailyWorkouts;
+        private ICollection<PendingWorkout> pendingWorkouts;
 
         public Member()
         {
             this.workouts = new HashSet<Workout>();
             this.dailyWorkouts = new HashSet<DailyWorkout>();
+            this.pendingWorkouts = new HashSet<PendingWorkout>();
         }
 
         public string FirstName { get; set; }
@@ -33,6 +35,12 @@ namespace Flash.Club13.Models
         {
             get { return this.dailyWorkouts; }
             set { this.dailyWorkouts = value; }
+        }
+
+        public virtual ICollection<PendingWorkout> PendingWorkouts
+        {
+            get { return this.pendingWorkouts; }
+            set { this.pendingWorkouts = value; }
         }
 
         [ForeignKey("User")]

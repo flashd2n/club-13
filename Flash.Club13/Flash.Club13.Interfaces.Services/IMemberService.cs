@@ -10,5 +10,13 @@ namespace Flash.Club13.Interfaces.Services
     public interface IMemberService
     {
         Member GetByUserId(string id);
+
+        Member GetById(Guid id);
+
+        void Update(Member member);
+
+        void AddPending(Member member, PendingWorkout workout);
+
+        void AddWorkout(Member member, Workout workout);
     }
 }

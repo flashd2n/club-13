@@ -45,9 +45,11 @@
     <Compile Include="IDailyWorkoutService.cs" />
     <Compile Include="IExerciseService.cs" />
     <Compile Include="IMemberService.cs" />
+    <Compile Include="IPendingWorkoutService.cs" />
     <Compile Include="ITestService.cs" />
     <Compile Include="IWeekScheduleService.cs" />
     <Compile Include="IWorkoutInformationService.cs" />
+    <Compile Include="IWorkoutService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

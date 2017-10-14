@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Flash.Club13.Interfaces.Providers;
 using Flash.Club13.Interfaces.Services;
+using Flash.Club13.Models;
 using Flash.Club13.Web.Infrastructure.Providers;
 using Flash.Club13.Web.Models.Home;
 using Microsoft.AspNet.Identity;
@@ -21,8 +22,9 @@ namespace Flash.Club13.Web.Controllers
         private readonly IDailyWorkoutService dailyWorkoutService;
         private readonly IMemberIdProvider memberIdProvider;
         private readonly IMemberService memberService;
+        private readonly IWorkoutService workoutService;
 
-        public WorkoutController(IMapper mapper, IWorkoutInformationService workoutInformationService, IWeekScheduleService weekScheduleService, IDatetimeProvider datetimeProvider, IDailyWorkoutService dailyWorkoutService, IMemberIdProvider memberIdProvider, IMemberService memberService)
+        public WorkoutController(IMapper mapper, IWorkoutInformationService workoutInformationService, IWeekScheduleService weekScheduleService, IDatetimeProvider datetimeProvider, IDailyWorkoutService dailyWorkoutService, IMemberIdProvider memberIdProvider, IMemberService memberService, IWorkoutService workoutService)
         {
             this.mapper = mapper;
             this.workoutInformationService = workoutInformationService;
@@ -31,8 +33,10 @@ namespace Flash.Club13.Web.Controllers
             this.dailyWorkoutService = dailyWorkoutService;
             this.memberIdProvider = memberIdProvider;
             this.memberService = memberService;
+            this.workoutService = workoutService;
         }
 
+        [OutputCache(Duration = 42)]
         public ActionResult GetWorkOutOfTheDay()
         {
             var currentSchedule = this.weekScheduleService.GetCurrentSchedule();
@@ -51,9 +55,12 @@ namespace Flash.Club13.Web.Controllers
                 return this.PartialView("_HomeWoDPartial");
             }
 
+            var bestTime = this.workoutService.GetBestTime(currentWorkout);
+
             var workoutDetails = currentWorkout.WorkoutInformation;
 
             var model = this.mapper.Map<HomeWoDViewModel>(workoutDetails);
+            model.BestTime = bestTime;
 
             return this.PartialView("_HomeWoDPartial", model);
         }
@@ -71,6 +78,11 @@ namespace Flash.Club13.Web.Controllers
             var day = this.datetimeProvider.GetCurrentDayOfWeek().ToString();
 
             var workouts = currentSchedule.DailyWorkouts.Where(x => x.Day == day).ToList();
+
+            if (workouts.Count == 0)
+            {
+                return this.PartialView("_HomeWoDSignUp");
+            }
 
             var userId = this.memberIdProvider.GetLoggeedUserId();
             var loggedMember = this.memberService.GetByUserId(userId);
@@ -105,6 +117,17 @@ namespace Flash.Club13.Web.Controllers
             // add member to daily wod signed members collection
             this.dailyWorkoutService.AddMemberToDailyWorkout(loggedMember, dailyWoD);
 
+            // create pending workout
+
+            var pending = new PendingWorkout();
+            pending.DailyWorkout = dailyWoD;
+            pending.Member = loggedMember;
+            pending.IsCompleted = false;
+
+            // use factory
+            this.memberService.AddPending(loggedMember, pending);
+            // add pending workout to member collection
+
             var responseTest = string.Format($"Signed for {dailyWoD.StartTime} workout");
 
             return this.Json(responseTest);
@@ -117,5 +140,10 @@ namespace Flash.Club13.Web.Controllers
             
         }
 
+        public ActionResult AllWorkouts()
+        {
+
+            return this.View();
+        }
     }
 }

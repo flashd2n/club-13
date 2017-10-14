@@ -91,6 +91,8 @@ namespace Flash.Club13.Web.App_Start
             kernel.Bind<IWeekScheduleService>().To<WeekScheduleService>().InRequestScope();
             kernel.Bind<IDailyWorkoutService>().To<DailyWorkoutService>().InRequestScope();
             kernel.Bind<IMemberService>().To<MemberService>().InRequestScope();
+            kernel.Bind<IPendingWorkoutService>().To<PendingWorkoutService>().InRequestScope();
+            kernel.Bind<IWorkoutService>().To<WorkoutService>().InRequestScope();
 
             kernel.Bind<IMapper>().ToMethod(x => Mapper.Instance).InSingletonScope();
         }        

@@ -25,5 +25,28 @@ namespace Flash.Club13.Services
         {
             return this.membersRepo.All.FirstOrDefault(x => x.UserId == id);
         }
+
+        public Member GetById(Guid id)
+        {
+            return this.membersRepo.All.FirstOrDefault(x => x.Id == id);
+        }
+
+        public void Update(Member member)
+        {
+            this.membersRepo.Update(member);
+            this.unitOfWork.Commit();
+        }
+
+        public void AddPending(Member member, PendingWorkout workout)
+        {
+            member.PendingWorkouts.Add(workout);
+            this.Update(member);
+        }
+
+        public void AddWorkout(Member member, Workout workout)
+        {
+            member.Workouts.Add(workout);
+            this.Update(member);
+        }
     }
 }

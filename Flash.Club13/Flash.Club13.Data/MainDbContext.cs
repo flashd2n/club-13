@@ -34,6 +34,8 @@ namespace Flash.Club13.Data
 
         public IDbSet<WeekSchedule> WeekSchedules { get; set; }
 
+        public IDbSet<PendingWorkout> PendingWorkouts { get; set; }
+
         public override int SaveChanges()
         {
             this.ApplyAuditInfo();

@@ -42,7 +42,9 @@ namespace Flash.Club13.Services
         public WeekSchedule GetCurrentSchedule()
         {
             var today = this.datetimeProvider.GetToday();
-            var schedule = this.weekScheduleRepo.All.FirstOrDefault(x => today < x.WeekEnd && today > x.WeekStart);
+            
+            var schedule = this.weekScheduleRepo.All
+                .FirstOrDefault(x => today.Day <= x.WeekEnd.Day && today >= x.WeekStart && today.Month <= x.WeekEnd.Month && today.Month >= x.WeekStart.Month);
             return schedule;
         }
 

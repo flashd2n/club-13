@@ -236,6 +236,9 @@
     <Compile Include="Infrastructure\Providers\IMemberIdProvider.cs" />
     <Compile Include="Infrastructure\Providers\MemberIdProvider.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CompleteWorkout\AllPendingSingleWorkoutViewModel.cs" />
+    <Compile Include="Models\CompleteWorkout\AllPendingViewModel.cs" />
+    <Compile Include="Models\CompleteWorkout\CompleteViewModel.cs" />
     <Compile Include="Models\Home\HomeDailyWoDViewModel.cs" />
     <Compile Include="Models\Home\HomeWoDViewModel.cs" />
     <Compile Include="Models\Home\IndexViewModel.cs" />
@@ -316,6 +319,8 @@
     <Content Include="Views\Shared\_HomeWoDSignUp.cshtml" />
     <Content Include="Views\Shared\_HomeWoDPartial.cshtml" />
     <Content Include="Views\CompleteWorkout\All.cshtml" />
+    <Content Include="Views\CompleteWorkout\Complete.cshtml" />
+    <Content Include="Views\Workout\AllWorkouts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

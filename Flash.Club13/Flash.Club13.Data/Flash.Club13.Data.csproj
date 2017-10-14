@@ -94,6 +94,10 @@
     <Compile Include="Migrations\201710141155372_AddedDailyStartTimeEnum.Designer.cs">
       <DependentUpon>201710141155372_AddedDailyStartTimeEnum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710142036432_AddedPendingWorkout.cs" />
+    <Compile Include="Migrations\201710142036432_AddedPendingWorkout.Designer.cs">
+      <DependentUpon>201710142036432_AddedPendingWorkout.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\EfRepostory.cs" />
@@ -145,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710141155372_AddedDailyStartTimeEnum.resx">
       <DependentUpon>201710141155372_AddedDailyStartTimeEnum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710142036432_AddedPendingWorkout.resx">
+      <DependentUpon>201710142036432_AddedPendingWorkout.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

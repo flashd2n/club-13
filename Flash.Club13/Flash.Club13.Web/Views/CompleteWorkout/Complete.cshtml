@@ -1,0 +1,14 @@
+﻿@using Flash.Club13.Web.Models.CompleteWorkout
+@model CompleteViewModel
+
+<h1>Complete Workout</h1>
+@using (Html.BeginForm("Complete", "CompleteWorkout", new { Area = "" }, FormMethod.Post, null))
+{
+    <input type="hidden" name="Id" value=@Model.Id>
+    @Html.LabelFor(x => x.Minutes)
+    @Html.EditorFor(x => x.Minutes)
+
+    @Html.LabelFor(x => x.Seconds)
+    @Html.EditorFor(x => x.Seconds)
+    <button type="submit">Create!</button>
+}

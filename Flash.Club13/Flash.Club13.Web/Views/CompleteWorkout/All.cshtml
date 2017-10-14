@@ -1,1 +1,10 @@
-﻿<h1>All Workouts Pending Completion</h1>
+﻿@using Flash.Club13.Web.Models.CompleteWorkout
+@model AllPendingViewModel
+
+<h1>All Workouts Pending Completion</h1>
+@foreach(var workout in Model.AllWorkouts)
+{
+    <h2>From: @workout.CreatedOn</h2>
+    <h3>Workout: @workout.Name</h3>
+    @Html.ActionLink("Complete", "Complete", "CompleteWorkout", new { Area = "", id = workout.Id }, new { });
+}
