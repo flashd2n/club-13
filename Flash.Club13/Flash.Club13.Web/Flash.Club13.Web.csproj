@@ -213,6 +213,7 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Administration\Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\CompleteWorkoutController.cs" />
     <Compile Include="Controllers\WorkoutController.cs" />
     <Compile Include="Areas\Administration\Models\Manager\CreateExerciseViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Manager\CreateWeekScheduleViewModel.cs" />
@@ -314,6 +315,7 @@
     <Content Include="Views\Shared\_MemberControls.cshtml" />
     <Content Include="Views\Shared\_HomeWoDSignUp.cshtml" />
     <Content Include="Views\Shared\_HomeWoDPartial.cshtml" />
+    <Content Include="Views\CompleteWorkout\All.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
