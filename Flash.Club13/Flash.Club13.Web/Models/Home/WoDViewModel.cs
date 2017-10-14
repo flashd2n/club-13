@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Flash.Club13.Web.Models.Home
 {
-    public class HomeWoDViewModel : IMapFrom<WorkoutInformation>
+    public class WoDViewModel : IMapFrom<WorkoutInformation>
     {
         public string Description { get; set; }
 

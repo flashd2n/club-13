@@ -1,1 +1,8 @@
-﻿<h1>All Workouts</h1>
+﻿@using Flash.Club13.Web.Models.Workout
+@model AllWorkoutsViewModel
+
+<h1>All Workouts</h1>
+@foreach (var wod in Model.AllWorkouts)
+{
+    @Html.Partial("_WoDPartial", wod);
+}

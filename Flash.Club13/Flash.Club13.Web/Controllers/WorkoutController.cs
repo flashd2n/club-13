@@ -4,6 +4,7 @@ using Flash.Club13.Interfaces.Services;
 using Flash.Club13.Models;
 using Flash.Club13.Web.Infrastructure.Providers;
 using Flash.Club13.Web.Models.Home;
+using Flash.Club13.Web.Models.Workout;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace Flash.Club13.Web.Controllers
 
             if (currentSchedule == null)
             {
-                return this.PartialView("_HomeWoDPartial");
+                return this.PartialView("_WoDPartial");
             }
 
             var day = this.datetimeProvider.GetCurrentDayOfWeek().ToString();
@@ -52,17 +53,17 @@ namespace Flash.Club13.Web.Controllers
 
             if (currentWorkout == null)
             {
-                return this.PartialView("_HomeWoDPartial");
+                return this.PartialView("_WoDPartial");
             }
 
             var bestTime = this.workoutService.GetBestTime(currentWorkout);
 
             var workoutDetails = currentWorkout.WorkoutInformation;
 
-            var model = this.mapper.Map<HomeWoDViewModel>(workoutDetails);
+            var model = this.mapper.Map<WoDViewModel>(workoutDetails);
             model.BestTime = bestTime;
 
-            return this.PartialView("_HomeWoDPartial", model);
+            return this.PartialView("_WoDPartial", model);
         }
 
         [HttpGet]
@@ -142,8 +143,20 @@ namespace Flash.Club13.Web.Controllers
 
         public ActionResult AllWorkouts()
         {
+            var allWorkouts = this.workoutInformationService.GetAll();
 
-            return this.View();
+            var model = new AllWorkoutsViewModel();
+
+            foreach (var wod in allWorkouts)
+            {
+                var bestTime = this.workoutService.GetBestTime(wod);
+                var wodViewModel = this.mapper.Map<WoDViewModel>(wod);
+                wodViewModel.BestTime = bestTime;
+
+                model.AllWorkouts.Add(wodViewModel);
+            }
+
+            return this.View(model);
         }
     }
 }

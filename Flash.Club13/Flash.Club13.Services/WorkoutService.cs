@@ -29,5 +29,14 @@ namespace Flash.Club13.Services
                 .Select(x => x.Time)
                 .FirstOrDefault();
         }
+
+        public TimeSpan? GetBestTime(WorkoutInformation workout)
+        {
+            return this.workoutsRepo.All
+                .Where(x => x.WorkoutInformation.Name == workout.Name)
+                .OrderByDescending(x => x.Time)
+                .Select(x => x.Time)
+                .FirstOrDefault();
+        }
     }
 }

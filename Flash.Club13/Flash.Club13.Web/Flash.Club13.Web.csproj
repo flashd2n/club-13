@@ -240,10 +240,11 @@
     <Compile Include="Models\CompleteWorkout\AllPendingViewModel.cs" />
     <Compile Include="Models\CompleteWorkout\CompleteViewModel.cs" />
     <Compile Include="Models\Home\HomeDailyWoDViewModel.cs" />
-    <Compile Include="Models\Home\HomeWoDViewModel.cs" />
+    <Compile Include="Models\Home\WoDViewModel.cs" />
     <Compile Include="Models\Home\IndexViewModel.cs" />
     <Compile Include="Models\Home\SignUpWoDViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Workout\AllWorkoutsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -317,7 +318,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_MemberControls.cshtml" />
     <Content Include="Views\Shared\_HomeWoDSignUp.cshtml" />
-    <Content Include="Views\Shared\_HomeWoDPartial.cshtml" />
+    <Content Include="Views\Shared\_WoDPartial.cshtml" />
     <Content Include="Views\CompleteWorkout\All.cshtml" />
     <Content Include="Views\CompleteWorkout\Complete.cshtml" />
     <Content Include="Views\Workout\AllWorkouts.cshtml" />
