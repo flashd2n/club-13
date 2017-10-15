@@ -1,0 +1,11 @@
+﻿@using Flash.Club13.Web.Models.PublicSchedule
+@model CurrentScheduleViewModel
+
+@if (Model.DailyWorkouts.Any(x => x.Day == (string)ViewData["day"]))
+{
+    <p>@Model.DailyWorkouts.FirstOrDefault(x => x.Day == (string)ViewData["day"]).WorkoutInformation.Name</p>
+}
+else
+{
+    <p>No workout</p>
+}

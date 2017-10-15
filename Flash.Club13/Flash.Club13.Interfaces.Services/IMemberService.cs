@@ -13,6 +13,8 @@ namespace Flash.Club13.Interfaces.Services
 
         Member GetById(Guid id);
 
+        int GetTotalMemberCount();
+
         void Update(Member member);
 
         void AddPending(Member member, PendingWorkout workout);

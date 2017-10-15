@@ -214,6 +214,7 @@
     <Compile Include="Areas\Administration\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Administration\Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\CompleteWorkoutController.cs" />
+    <Compile Include="Controllers\PublicScheduleController.cs" />
     <Compile Include="Controllers\WorkoutController.cs" />
     <Compile Include="Areas\Administration\Models\Manager\CreateExerciseViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Manager\CreateWeekScheduleViewModel.cs" />
@@ -240,10 +241,13 @@
     <Compile Include="Models\CompleteWorkout\AllPendingViewModel.cs" />
     <Compile Include="Models\CompleteWorkout\CompleteViewModel.cs" />
     <Compile Include="Models\Home\HomeDailyWoDViewModel.cs" />
+    <Compile Include="Models\Home\TotalMembersViewModel.cs" />
+    <Compile Include="Models\Home\TotalWorkoutsViewModel.cs" />
     <Compile Include="Models\Home\WoDViewModel.cs" />
     <Compile Include="Models\Home\IndexViewModel.cs" />
     <Compile Include="Models\Home\SignUpWoDViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PublicSchedule\CurrentScheduleViewModel.cs" />
     <Compile Include="Models\Workout\AllWorkoutsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -293,8 +297,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -322,6 +324,10 @@
     <Content Include="Views\CompleteWorkout\All.cshtml" />
     <Content Include="Views\CompleteWorkout\Complete.cshtml" />
     <Content Include="Views\Workout\AllWorkouts.cshtml" />
+    <Content Include="Views\PublicSchedule\Current.cshtml" />
+    <Content Include="Views\PublicSchedule\_CurrentScheduleDayPartial.cshtml" />
+    <Content Include="Views\Home\_TotalMembersPartial.cshtml" />
+    <Content Include="Views\Home\_TotalWorkoutsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

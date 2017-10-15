@@ -1,5 +1,6 @@
 ﻿using Flash.Club13.Interfaces.Services;
 using Flash.Club13.Models;
+using Flash.Club13.Web.Models.Home;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,13 @@ namespace Flash.Club13.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+        private readonly IMemberService memberService;
+        private readonly IWorkoutService workoutService;
+
+        public HomeController(IMemberService memberService, IWorkoutService workoutService)
         {
+            this.memberService = memberService;
+            this.workoutService = workoutService;
         }
 
         public ActionResult Index()
@@ -19,18 +25,28 @@ namespace Flash.Club13.Web.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [OutputCache(Duration = 100)]
+        [ChildActionOnly]
+        public ActionResult TotalMembers()
         {
-            ViewBag.Message = "Your application description page.";
+            var totalCount = this.memberService.GetTotalMemberCount();
 
-            return View();
+            var model = new TotalMembersViewModel();
+            model.Count = totalCount;
+
+            return this.PartialView("_TotalMembersPartial", model);
         }
 
-        public ActionResult Contact()
+        [OutputCache(Duration = 100)]
+        [ChildActionOnly]
+        public ActionResult TotalWorkouts()
         {
-            ViewBag.Message = "Your contact page.";
+            var totalCount = this.workoutService.GetTotalWorkouts();
 
-            return View();
+            var model = new TotalWorkoutsViewModel();
+            model.Count = totalCount;
+
+            return this.PartialView("_TotalWorkoutsPartial", model);
         }
     }
 }

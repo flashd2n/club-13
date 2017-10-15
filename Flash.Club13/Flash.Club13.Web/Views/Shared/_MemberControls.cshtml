@@ -1,8 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    <li><a href="">Week Schedule</a></li>
-    <li><a href="">My Stats</a></li>
+    <li>@Html.ActionLink("Week Schedule", "Current", "PublicSchedule", new { Area = "" }, new { })</li>
     <li>@Html.ActionLink("Complete Workout", "All", "CompleteWorkout", new { Area = "" }, new { })</li>
     if (User.IsInRole("Admin"))
     {

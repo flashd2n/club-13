@@ -8,5 +8,7 @@ namespace Flash.Club13.Interfaces.Services
         TimeSpan? GetBestTime(DailyWorkout dailyWorkout);
 
         TimeSpan? GetBestTime(WorkoutInformation workout);
+
+        int GetTotalWorkouts();
     }
 }

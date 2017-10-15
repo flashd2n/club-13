@@ -26,6 +26,11 @@ namespace Flash.Club13.Services
             return this.membersRepo.All.FirstOrDefault(x => x.UserId == id);
         }
 
+        public int GetTotalMemberCount()
+        {
+            return this.membersRepo.All.Count();
+        }
+
         public Member GetById(Guid id)
         {
             return this.membersRepo.All.FirstOrDefault(x => x.Id == id);

@@ -1,0 +1,33 @@
+﻿@using Flash.Club13.Web.Models.PublicSchedule
+@model CurrentScheduleViewModel
+
+<h1>This week's schedule</h1>
+<h2>Start: @Html.DisplayFor(x => x.WeekStart) -> End: @Html.DisplayFor(x => x.WeekEnd)</h2>
+
+<h2>Monday</h2>
+@Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Monday" } })
+<br />
+
+<h2>Tuesday</h2>
+@Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Tuesday" } })
+<br />
+
+<h2>Wednesday</h2>
+@Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Wednesday" } })
+<br />
+
+<h2>Thursday</h2>
+@Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Thursday" } })
+<br />
+
+<h2>Friday</h2>
+@Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Friday" } })
+<br />
+
+<h2>Saturday</h2>
+@Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Saturday" } })
+<br />
+
+<h2>Sunday</h2>
+@Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Sunday" } })
+<br />

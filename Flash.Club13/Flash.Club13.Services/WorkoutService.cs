@@ -38,5 +38,10 @@ namespace Flash.Club13.Services
                 .Select(x => x.Time)
                 .FirstOrDefault();
         }
+
+        public int GetTotalWorkouts()
+        {
+            return this.workoutsRepo.All.Count();
+        }
     }
 }
