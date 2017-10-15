@@ -15,8 +15,8 @@ namespace Flash.Club13.Services
 
         public ExerciseService(IEfRepostory<Exercise> exercisesRepo, IUnitOfWork unitOfWork)
         {
-            this.exercisesRepo = exercisesRepo;
-            this.unitOfWork = unitOfWork;
+            this.exercisesRepo = exercisesRepo ?? throw new ArgumentException("Exercise Repo cannot be null");
+            this.unitOfWork = unitOfWork ?? throw new ArgumentException("UnitOfWork cannot be null");
         }
 
         public ICollection<Exercise> GetAll()
@@ -36,12 +36,22 @@ namespace Flash.Club13.Services
 
         public void Update(Exercise exercise)
         {
+            if (exercise == null)
+            {
+                throw new ArgumentException("Exercise cannot be null");
+            }
+
             this.exercisesRepo.Update(exercise);
             this.unitOfWork.Commit();
         }
 
         public void AddExercise(Exercise exercise)
         {
+            if (exercise == null)
+            {
+                throw new ArgumentException("Exercise cannot be null");
+            }
+
             this.exercisesRepo.Add(exercise);
             this.unitOfWork.Commit();
         }

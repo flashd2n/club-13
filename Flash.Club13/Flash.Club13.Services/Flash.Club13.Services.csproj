@@ -48,7 +48,6 @@
     <Compile Include="MemberService.cs" />
     <Compile Include="PendingWorkoutService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestService.cs" />
     <Compile Include="WeekScheduleService.cs" />
     <Compile Include="WorkoutInformationService.cs" />
     <Compile Include="WorkoutService.cs" />

@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Flash.Club13.IntegrationTests
 {
-    [TestFixture]
-    public class TestingIntegration
-    {
-        [Test]
-        public void TestingTestFunctionality()
-        {
-            var db = new MainDbContext();
-            var testMe = db.Tests.ToList();
+    //[TestFixture]
+    //public class TestingIntegration
+    //{
+    //    [Test]
+    //    public void TestingTestFunctionality()
+    //    {
+    //        var db = new MainDbContext();
+    //        var testMe = db.Tests.ToList();
 
-            Assert.AreEqual(testMe.Count, 0);
-        }
-    }
+    //        Assert.AreEqual(testMe.Count, 0);
+    //    }
+    //}
 }

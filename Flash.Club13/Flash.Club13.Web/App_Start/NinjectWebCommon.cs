@@ -87,7 +87,6 @@ namespace Flash.Club13.Web.App_Start
             kernel.Bind<IDatetimeProvider>().To<DatetimeProvider>().InRequestScope();
             kernel.Bind<IMemberIdProvider>().To<MemberIdProvider>().InRequestScope();
 
-            kernel.Bind<ITestService>().To<TestService>().InRequestScope();
             kernel.Bind<IExerciseService>().To<ExerciseService>().InRequestScope();
             kernel.Bind<IWorkoutInformationService>().To<WorkoutInformationService>().InRequestScope();
             kernel.Bind<IWeekScheduleService>().To<WeekScheduleService>().InRequestScope();
