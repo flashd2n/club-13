@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
 using Flash.Club13.Interfaces.Services;
-using Flash.Club13.Models;
+using Flash.Club13.Web.Infrastructure.Factories;
 using Flash.Club13.Web.Infrastructure.Providers;
 using Flash.Club13.Web.Models.CompleteWorkout;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Flash.Club13.Web.Controllers
@@ -18,13 +16,17 @@ namespace Flash.Club13.Web.Controllers
         private readonly IMemberService memberService;
         private readonly IMapper mapper;
         private readonly IPendingWorkoutService pendingWorkoutService;
+        private readonly IModelViewFactory modelViewFactory;
+        private readonly IDataModelFactory dataModelFactory;
 
-        public CompleteWorkoutController(IMemberIdProvider memberIdProvider, IMemberService memberService, IMapper mapper, IPendingWorkoutService pendingWorkoutService)
+        public CompleteWorkoutController(IMemberIdProvider memberIdProvider, IMemberService memberService, IMapper mapper, IPendingWorkoutService pendingWorkoutService, IModelViewFactory modelViewFactory, IDataModelFactory dataModelFactory)
         {
             this.memberIdProvider = memberIdProvider;
             this.memberService = memberService;
             this.mapper = mapper;
             this.pendingWorkoutService = pendingWorkoutService;
+            this.modelViewFactory = modelViewFactory;
+            this.dataModelFactory = dataModelFactory;
         }
 
         public ActionResult All()
@@ -35,7 +37,7 @@ namespace Flash.Club13.Web.Controllers
 
             var pendingWorkouts = loggedMember.PendingWorkouts.Where(x => x.IsCompleted == false);
 
-            var model = new AllPendingViewModel();
+            var model = this.modelViewFactory.CreateAllPendingViewModel();
 
             foreach (var pending in pendingWorkouts)
             {
@@ -49,8 +51,7 @@ namespace Flash.Club13.Web.Controllers
         [HttpGet]
         public ActionResult Complete(Guid id)
         {
-            var model = new CompleteViewModel();
-            model.Id = id;
+            var model = this.modelViewFactory.CreateCompleteViewModel(id);
 
             return this.View(model);
         }
@@ -67,7 +68,8 @@ namespace Flash.Club13.Web.Controllers
 
                 this.pendingWorkoutService.MarkPendingAsCompleted(pending);
 
-                var workout = new Workout();
+                var workout = this.dataModelFactory.CreateWorkout();
+
                 workout.Member = pending.Member;
                 workout.WorkoutInformation = pending.DailyWorkout.WorkoutInformation;
                 workout.Time = time;

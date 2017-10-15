@@ -1,5 +1,6 @@
 ﻿using Flash.Club13.Interfaces.Services;
 using Flash.Club13.Models;
+using Flash.Club13.Web.Infrastructure.Factories;
 using Flash.Club13.Web.Models.Home;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,13 @@ namespace Flash.Club13.Web.Controllers
     {
         private readonly IMemberService memberService;
         private readonly IWorkoutService workoutService;
+        private readonly IModelViewFactory modelViewFactory;
 
-        public HomeController(IMemberService memberService, IWorkoutService workoutService)
+        public HomeController(IMemberService memberService, IWorkoutService workoutService, IModelViewFactory modelViewFactory)
         {
             this.memberService = memberService;
             this.workoutService = workoutService;
+            this.modelViewFactory = modelViewFactory;
         }
 
         public ActionResult Index()
@@ -31,8 +34,7 @@ namespace Flash.Club13.Web.Controllers
         {
             var totalCount = this.memberService.GetTotalMemberCount();
 
-            var model = new TotalMembersViewModel();
-            model.Count = totalCount;
+            var model = this.modelViewFactory.CreateTotalMembersViewModel(totalCount);
 
             return this.PartialView("_TotalMembersPartial", model);
         }
@@ -43,8 +45,7 @@ namespace Flash.Club13.Web.Controllers
         {
             var totalCount = this.workoutService.GetTotalWorkouts();
 
-            var model = new TotalWorkoutsViewModel();
-            model.Count = totalCount;
+            var model = this.modelViewFactory.CreateTotalWorkoutsViewModel(totalCount);
 
             return this.PartialView("_TotalWorkoutsPartial", model);
         }

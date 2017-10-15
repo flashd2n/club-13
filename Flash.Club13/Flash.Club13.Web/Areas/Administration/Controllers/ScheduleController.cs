@@ -3,10 +3,9 @@ using Flash.Club13.Interfaces.Services;
 using Flash.Club13.Models;
 using Flash.Club13.Models.Enums;
 using Flash.Club13.Web.Areas.Administration.Models.Schedule;
+using Flash.Club13.Web.Infrastructure.Factories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Flash.Club13.Web.Areas.Administration.Controllers
@@ -18,13 +17,15 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
         private readonly IWeekScheduleService weekScheduleService;
         private readonly IWorkoutInformationService workoutInformationService;
         private readonly IDailyWorkoutService dailyWorkoutService;
+        private readonly IModelViewFactory modelViewFactory;
 
-        public ScheduleController(IMapper mapper, IWeekScheduleService weekScheduleService, IWorkoutInformationService workoutInformationService, IDailyWorkoutService dailyWorkoutService)
+        public ScheduleController(IMapper mapper, IWeekScheduleService weekScheduleService, IWorkoutInformationService workoutInformationService, IDailyWorkoutService dailyWorkoutService, IModelViewFactory modelViewFactory)
         {
             this.mapper = mapper;
             this.weekScheduleService = weekScheduleService;
             this.workoutInformationService = workoutInformationService;
             this.dailyWorkoutService = dailyWorkoutService;
+            this.modelViewFactory = modelViewFactory;
         }
 
         public ActionResult All()
@@ -39,9 +40,8 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
                 allSchedulesViewModels.Add(scheduleViewModel);
             }
 
-            var viewModel = new AllSchedulesViewModel();
-            viewModel.Schedules = allSchedulesViewModels;
-            
+            var viewModel = this.modelViewFactory.CreateAllSchedulesViewModel(allSchedulesViewModels);
+
             return this.View(viewModel);
         }
 
@@ -56,7 +56,6 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
 
                 var wodDay = dailyWorkoutViewModel.Day;
 
-                // check of key exists before adding to dictionary
                 if (scheduleViewModel.AllWorkouts.ContainsKey(wodDay))
                 {
                     continue;
@@ -73,27 +72,32 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(DailyWorkoutViewModel dailyWorkout)
         {
-            var wodInfo = this.workoutInformationService.GetByName(dailyWorkout.Name);
+            if (this.ModelState.IsValid)
+            {
+                var wodInfo = this.workoutInformationService.GetByName(dailyWorkout.Name);
 
-            var morningDailyWodDataModel = this.mapper.Map<DailyWorkout>(dailyWorkout);
-            morningDailyWodDataModel.WorkoutInformation = wodInfo;
-            morningDailyWodDataModel.StartTime = TimeOfDay.Morning;
+                var morningDailyWodDataModel = this.mapper.Map<DailyWorkout>(dailyWorkout);
+                morningDailyWodDataModel.WorkoutInformation = wodInfo;
+                morningDailyWodDataModel.StartTime = TimeOfDay.Morning;
 
-            var noonDailyWodDataModel = this.mapper.Map<DailyWorkout>(dailyWorkout);
-            noonDailyWodDataModel.WorkoutInformation = wodInfo;
-            noonDailyWodDataModel.StartTime = TimeOfDay.Noon;
+                var noonDailyWodDataModel = this.mapper.Map<DailyWorkout>(dailyWorkout);
+                noonDailyWodDataModel.WorkoutInformation = wodInfo;
+                noonDailyWodDataModel.StartTime = TimeOfDay.Noon;
 
-            var eveningDailyWodDataModel = this.mapper.Map<DailyWorkout>(dailyWorkout);
-            eveningDailyWodDataModel.WorkoutInformation = wodInfo;
-            eveningDailyWodDataModel.StartTime = TimeOfDay.Evening;
+                var eveningDailyWodDataModel = this.mapper.Map<DailyWorkout>(dailyWorkout);
+                eveningDailyWodDataModel.WorkoutInformation = wodInfo;
+                eveningDailyWodDataModel.StartTime = TimeOfDay.Evening;
 
-            this.dailyWorkoutService.AddAllDailyWorkouts(morningDailyWodDataModel, noonDailyWodDataModel, eveningDailyWodDataModel);
+                this.dailyWorkoutService.AddAllDailyWorkouts(morningDailyWodDataModel, noonDailyWodDataModel, eveningDailyWodDataModel);
 
-            var schedule = this.weekScheduleService.GetById(dailyWorkout.ScheduleId);
+                var schedule = this.weekScheduleService.GetById(dailyWorkout.ScheduleId);
 
-            this.weekScheduleService.AddDailiesToSchedule(schedule, morningDailyWodDataModel, noonDailyWodDataModel, eveningDailyWodDataModel);
+                this.weekScheduleService.AddDailiesToSchedule(schedule, morningDailyWodDataModel, noonDailyWodDataModel, eveningDailyWodDataModel);
 
-            return this.Json(dailyWorkout.Name, JsonRequestBehavior.DenyGet);
+                return this.Json(dailyWorkout.Name, JsonRequestBehavior.DenyGet);
+            }
+
+            return this.Json("Invalid Entry");
         }
 
     }

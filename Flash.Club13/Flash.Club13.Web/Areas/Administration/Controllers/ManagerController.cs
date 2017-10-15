@@ -2,6 +2,7 @@
 using Flash.Club13.Interfaces.Services;
 using Flash.Club13.Models;
 using Flash.Club13.Web.Areas.Administration.Models;
+using Flash.Club13.Web.Infrastructure.Factories;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -15,13 +16,15 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
         private readonly IExerciseService exerciseService;
         private readonly IWorkoutInformationService workoutInformationService;
         private readonly IWeekScheduleService weekScheduleService;
+        private readonly IModelViewFactory modelViewFactory;
 
-        public ManagerController(IMapper mapper, IExerciseService exerciseService, IWorkoutInformationService workoutInformationService, IWeekScheduleService weekScheduleService)
+        public ManagerController(IMapper mapper, IExerciseService exerciseService, IWorkoutInformationService workoutInformationService, IWeekScheduleService weekScheduleService, IModelViewFactory modelViewFactory)
         {
             this.mapper = mapper;
             this.exerciseService = exerciseService;
             this.workoutInformationService = workoutInformationService;
             this.weekScheduleService = weekScheduleService;
+            this.modelViewFactory = modelViewFactory;
         }
 
         public ActionResult Index()
@@ -64,8 +67,7 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
                 allExercisesViews.Add(viewExercise);
             }
 
-            var model = new CreateWorkoutViewModel();
-            model.AllExercises = allExercisesViews;
+            var model = this.modelViewFactory.CreateCreateWorkoutViewModel(allExercisesViews);
 
             return this.View(model);
         }

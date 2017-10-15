@@ -1,15 +1,11 @@
 ﻿using AutoMapper;
 using Flash.Club13.Interfaces.Providers;
 using Flash.Club13.Interfaces.Services;
-using Flash.Club13.Models;
+using Flash.Club13.Web.Infrastructure.Factories;
 using Flash.Club13.Web.Infrastructure.Providers;
 using Flash.Club13.Web.Models.Home;
-using Flash.Club13.Web.Models.Workout;
-using Microsoft.AspNet.Identity;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Flash.Club13.Web.Controllers
@@ -24,8 +20,10 @@ namespace Flash.Club13.Web.Controllers
         private readonly IMemberIdProvider memberIdProvider;
         private readonly IMemberService memberService;
         private readonly IWorkoutService workoutService;
+        private readonly IModelViewFactory modelViewFactory;
+        private readonly IDataModelFactory dataModelFactory;
 
-        public WorkoutController(IMapper mapper, IWorkoutInformationService workoutInformationService, IWeekScheduleService weekScheduleService, IDatetimeProvider datetimeProvider, IDailyWorkoutService dailyWorkoutService, IMemberIdProvider memberIdProvider, IMemberService memberService, IWorkoutService workoutService)
+        public WorkoutController(IMapper mapper, IWorkoutInformationService workoutInformationService, IWeekScheduleService weekScheduleService, IDatetimeProvider datetimeProvider, IDailyWorkoutService dailyWorkoutService, IMemberIdProvider memberIdProvider, IMemberService memberService, IWorkoutService workoutService, IModelViewFactory modelViewFactory, IDataModelFactory dataModelFactory)
         {
             this.mapper = mapper;
             this.workoutInformationService = workoutInformationService;
@@ -35,6 +33,8 @@ namespace Flash.Club13.Web.Controllers
             this.memberIdProvider = memberIdProvider;
             this.memberService = memberService;
             this.workoutService = workoutService;
+            this.modelViewFactory = modelViewFactory;
+            this.dataModelFactory = dataModelFactory;
         }
 
         [OutputCache(Duration = 42)]
@@ -88,7 +88,7 @@ namespace Flash.Club13.Web.Controllers
             var userId = this.memberIdProvider.GetLoggeedUserId();
             var loggedMember = this.memberService.GetByUserId(userId);
 
-            var model = new SignUpWoDViewModel();
+            var model = this.modelViewFactory.CreateSignUpWoDViewModel();
 
             foreach (var wod in workouts)
             {
@@ -115,24 +115,17 @@ namespace Flash.Club13.Web.Controllers
                 return this.RedirectToAction("SignUpForWorkout");
             }
 
-            // get daily workout from db by id
             var dailyWoD = this.dailyWorkoutService.GetById(SelectedWoDId);
-            // get the member from Db
+
             var userId = this.memberIdProvider.GetLoggeedUserId();
+
             var loggedMember = this.memberService.GetByUserId(userId);
-            // add member to daily wod signed members collection
+
             this.dailyWorkoutService.AddMemberToDailyWorkout(loggedMember, dailyWoD);
 
-            // create pending workout
+            var pending = this.dataModelFactory.CreatePendingWorkout(dailyWoD, loggedMember, false);
 
-            var pending = new PendingWorkout();
-            pending.DailyWorkout = dailyWoD;
-            pending.Member = loggedMember;
-            pending.IsCompleted = false;
-
-            // use factory
             this.memberService.AddPending(loggedMember, pending);
-            // add pending workout to member collection
 
             var responseTest = string.Format($"Signed for {dailyWoD.StartTime} workout");
 
@@ -150,7 +143,7 @@ namespace Flash.Club13.Web.Controllers
         {
             var allWorkouts = this.workoutInformationService.GetAll();
 
-            var model = new AllWorkoutsViewModel();
+            var model = this.modelViewFactory.CreateAllWorkoutsViewModel();
 
             foreach (var wod in allWorkouts)
             {

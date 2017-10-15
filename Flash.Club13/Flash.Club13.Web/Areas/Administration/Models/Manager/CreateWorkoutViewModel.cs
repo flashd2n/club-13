@@ -8,6 +8,15 @@ namespace Flash.Club13.Web.Areas.Administration.Models
 {
     public class CreateWorkoutViewModel : IMapFrom<WorkoutInformation>
     {
+        public CreateWorkoutViewModel()
+        {
+        }
+
+        public CreateWorkoutViewModel(IList<ExerciseMutipleSelectionViewModel> exercises)
+        {
+            this.AllExercises = exercises;
+        }
+
         [Required]
         [StringLength(maximumLength: 60, MinimumLength = 5)]
         public string Name { get; set; }

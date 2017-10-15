@@ -8,6 +8,16 @@ namespace Flash.Club13.Web.Models.CompleteWorkout
 {
     public class CompleteViewModel
     {
+        public CompleteViewModel()
+        {
+
+        }
+
+        public CompleteViewModel(Guid id)
+        {
+            this.Id = id;
+        }
+
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Required")]

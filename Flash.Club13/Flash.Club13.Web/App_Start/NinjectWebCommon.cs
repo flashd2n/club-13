@@ -23,6 +23,8 @@ namespace Flash.Club13.Web.App_Start
     using Flash.Club13.Interfaces.Providers;
     using Flash.Club13.Services.Providers;
     using Flash.Club13.Web.Infrastructure.Providers;
+    using Flash.Club13.Web.Infrastructure.Factories;
+    using Ninject.Extensions.Factory;
 
     public static class NinjectWebCommon 
     {
@@ -93,6 +95,9 @@ namespace Flash.Club13.Web.App_Start
             kernel.Bind<IMemberService>().To<MemberService>().InRequestScope();
             kernel.Bind<IPendingWorkoutService>().To<PendingWorkoutService>().InRequestScope();
             kernel.Bind<IWorkoutService>().To<WorkoutService>().InRequestScope();
+
+            kernel.Bind<IModelViewFactory>().ToFactory();
+            kernel.Bind<IDataModelFactory>().ToFactory();
 
             kernel.Bind<IMapper>().ToMethod(x => Mapper.Instance).InSingletonScope();
         }        

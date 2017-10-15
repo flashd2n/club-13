@@ -14,7 +14,7 @@ namespace Flash.Club13.Web.Areas.Administration.Models.Schedule
         public string Day { get; set; }
 
         [Required]
-        [StringLength(maximumLength: 60, MinimumLength = 5)]
+        [Range(0, 60)]
         public int DurationInMinutes { get; set; }
 
         [Required]

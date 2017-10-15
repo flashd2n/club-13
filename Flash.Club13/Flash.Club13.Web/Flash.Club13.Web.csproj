@@ -240,6 +240,8 @@
     <Compile Include="Infrastructure\Automapper\IMapFrom.cs" />
     <Compile Include="Infrastructure\Automapper\QueriableExtensions.cs" />
     <Compile Include="Infrastructure\Automapper\ÌHaveCustomMappings.cs" />
+    <Compile Include="Infrastructure\Factories\IDataModelFactory.cs" />
+    <Compile Include="Infrastructure\Factories\IModelViewFactory.cs" />
     <Compile Include="Infrastructure\Providers\IMemberIdProvider.cs" />
     <Compile Include="Infrastructure\Providers\MemberIdProvider.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
