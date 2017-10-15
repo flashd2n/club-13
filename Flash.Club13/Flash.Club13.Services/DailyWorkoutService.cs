@@ -17,8 +17,8 @@ namespace Flash.Club13.Services
 
         public DailyWorkoutService(IEfRepostory<DailyWorkout> dailyWorkoutRepo, IUnitOfWork unitOfWork)
         {
-            this.dailyWorkoutRepo = dailyWorkoutRepo;
-            this.unitOfWork = unitOfWork;
+            this.dailyWorkoutRepo = dailyWorkoutRepo ?? throw new ArgumentException("DailyWorkoutRepo Cannot be Null");
+            this.unitOfWork = unitOfWork ?? throw new ArgumentException("UnitOfWork Cannot be Null");
         }
 
         public ICollection<DailyWorkout> GetAll()
@@ -33,18 +33,38 @@ namespace Flash.Club13.Services
 
         public void Update(DailyWorkout dailyWorkout)
         {
+            if (dailyWorkout == null)
+            {
+                throw new ArgumentException("Daily workout cannot be null");
+            }
+
             this.dailyWorkoutRepo.Update(dailyWorkout);
             this.unitOfWork.Commit();
         }
 
         public void AddDailyWorkout(DailyWorkout dailyWorkout)
         {
+            if (dailyWorkout == null)
+            {
+                throw new ArgumentException("Daily workout cannot be null");
+            }
+
             this.dailyWorkoutRepo.Add(dailyWorkout);
             this.unitOfWork.Commit();
         }
 
         public void AddMemberToDailyWorkout(Member member, DailyWorkout workout)
         {
+            if (member == null)
+            {
+                throw new ArgumentException("Member cannot be null");
+            }
+
+            if (workout == null)
+            {
+                throw new ArgumentException("Workout cannot be null");
+            }
+
             workout.SignedMembers.Add(member);
             this.Update(workout);
         }
