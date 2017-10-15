@@ -110,6 +110,11 @@ namespace Flash.Club13.Web.Controllers
         [HttpPost]
         public ActionResult SignUpForWorkout(Guid SelectedWoDId)
         {
+            if (SelectedWoDId == default(Guid))
+            {
+                return this.RedirectToAction("SignUpForWorkout");
+            }
+
             // get daily workout from db by id
             var dailyWoD = this.dailyWorkoutService.GetById(SelectedWoDId);
             // get the member from Db

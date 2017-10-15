@@ -2,8 +2,15 @@
 @model CreateExerciseViewModel
 
 <h1>CREATE EXERCISE</h1>
-@using(Html.BeginForm("CreateExercise", "Manager", new { Area = "Administration"} , FormMethod.Post, null))
+@using (Html.BeginForm("CreateExercise", "Manager", new { Area = "Administration" }, FormMethod.Post, null))
 {
+    @Html.AntiForgeryToken()
     @Html.EditorForModel();
+    @Html.ValidationMessage("CreateExerciseViewModel")
     <button type="submit">Create!</button>
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
 }

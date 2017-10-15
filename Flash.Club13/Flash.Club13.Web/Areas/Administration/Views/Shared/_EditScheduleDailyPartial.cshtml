@@ -15,17 +15,19 @@
         <div id=@idKey>
             @using (Ajax.BeginForm("Edit", "Schedule", new AjaxOptions { HttpMethod = "POST", OnSuccess = "updateUi", UpdateTargetId = idKey, InsertionMode = InsertionMode.Replace }))
                 {
+
+                @Html.AntiForgeryToken()
+
                 <input type="hidden" name="Day" value=@ViewData["day"]>
 
                 <input type="hidden" name="ScheduleId" value=@Model.Id>
 
                 <label for="DurationInMinutes">Duration In Minutes</label>
-                    <input name="DurationInMinutes" type="number" id="DurationInMinutes" />
+                <input name="DurationInMinutes" type="number" id="DurationInMinutes" />
 
                     <select id=@key name="Name">
                         <option>Select Workout</option>
                     </select>
-
                     <input type="submit" value="Submit" />
             }
         </div>

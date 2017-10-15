@@ -4,11 +4,19 @@
 <h1>Complete Workout</h1>
 @using (Html.BeginForm("Complete", "CompleteWorkout", new { Area = "" }, FormMethod.Post, null))
 {
+    @Html.AntiForgeryToken()
     <input type="hidden" name="Id" value=@Model.Id>
     @Html.LabelFor(x => x.Minutes)
     @Html.EditorFor(x => x.Minutes)
+    @Html.ValidationMessageFor(x => x.Minutes);
 
     @Html.LabelFor(x => x.Seconds)
     @Html.EditorFor(x => x.Seconds)
-    <button type="submit">Create!</button>
+    @Html.ValidationMessageFor(x => x.Seconds)
+    <button type="submit">Complete!</button>
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
 }

@@ -36,13 +36,19 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateExercise(CreateExerciseViewModel exercise)
         {
-            var exerciseDataModel = this.mapper.Map<Exercise>(exercise);
+            if (this.ModelState.IsValid)
+            {
+                var exerciseDataModel = this.mapper.Map<Exercise>(exercise);
 
-            this.exerciseService.AddExercise(exerciseDataModel);
+                this.exerciseService.AddExercise(exerciseDataModel);
 
-            return this.RedirectToAction("Index");
+                return this.RedirectToAction("Index");
+            }
+
+            return this.View();
         }
 
         [HttpGet]
@@ -65,26 +71,32 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateWorkout(CreateWorkoutViewModel workout)
         {
-            var workoutDataModel = this.mapper.Map<WorkoutInformation>(workout);
-
-            this.workoutInformationService.AddWorkoutInformation(workoutDataModel);
-
-            var validExercisesIds = workout.AllExercises.Where(x => x.IsSelected == true).Select(x => x.Id).ToList();
-
-            var validExerciseDataModels = new List<Exercise>();
-
-            foreach (var id in validExercisesIds)
+            if (this.ModelState.IsValid)
             {
-                var exerciseToInsert = this.exerciseService.GetById(id);
+                var workoutDataModel = this.mapper.Map<WorkoutInformation>(workout);
 
-                validExerciseDataModels.Add(exerciseToInsert);
+                this.workoutInformationService.AddWorkoutInformation(workoutDataModel);
+
+                var validExercisesIds = workout.AllExercises.Where(x => x.IsSelected == true).Select(x => x.Id).ToList();
+
+                var validExerciseDataModels = new List<Exercise>();
+
+                foreach (var id in validExercisesIds)
+                {
+                    var exerciseToInsert = this.exerciseService.GetById(id);
+
+                    validExerciseDataModels.Add(exerciseToInsert);
+                }
+
+                this.workoutInformationService.InsertMultipleExercisesToWorkoutInformation(workoutDataModel, validExerciseDataModels);
+
+                return this.RedirectToAction("Index");
             }
 
-            this.workoutInformationService.InsertMultipleExercisesToWorkoutInformation(workoutDataModel, validExerciseDataModels);
-
-            return this.RedirectToAction("Index");
+            return this.RedirectToAction("CreateWorkout");
         }
 
         [HttpGet]
@@ -94,13 +106,20 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateSchedule(CreateWeekScheduleViewModel schedule)
         {
-            var scheduleDataModel = this.mapper.Map<WeekSchedule>(schedule);
+            if (this.ModelState.IsValid)
+            {
+                var scheduleDataModel = this.mapper.Map<WeekSchedule>(schedule);
 
-            this.weekScheduleService.AddWeekSchedule(scheduleDataModel);
+                this.weekScheduleService.AddWeekSchedule(scheduleDataModel);
 
-            return this.RedirectToAction("Edit", "Schedule", new { id = scheduleDataModel.Id });
+                return this.RedirectToAction("Edit", "Schedule", new { id = scheduleDataModel.Id });
+            }
+
+            return this.RedirectToAction("CreateSchedule");
+            
         }
     }
 }

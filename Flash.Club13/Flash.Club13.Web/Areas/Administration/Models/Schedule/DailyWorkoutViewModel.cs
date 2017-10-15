@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AutoMapper;
+using System.ComponentModel.DataAnnotations;
 
 namespace Flash.Club13.Web.Areas.Administration.Models.Schedule
 {
@@ -12,8 +13,11 @@ namespace Flash.Club13.Web.Areas.Administration.Models.Schedule
     {
         public string Day { get; set; }
 
+        [Required]
+        [StringLength(maximumLength: 60, MinimumLength = 5)]
         public int DurationInMinutes { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         public Guid ScheduleId { get; set; }

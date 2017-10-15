@@ -56,24 +56,30 @@ namespace Flash.Club13.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Complete(CompleteViewModel model)
         {
-            var time = new TimeSpan(0, model.Minutes, model.Seconds);
+            if (this.ModelState.IsValid)
+            {
+                var time = new TimeSpan(0, model.Minutes, model.Seconds);
 
-            var pending = this.pendingWorkoutService.GetById(model.Id);
+                var pending = this.pendingWorkoutService.GetById(model.Id);
 
-            this.pendingWorkoutService.MarkPendingAsCompleted(pending);
+                this.pendingWorkoutService.MarkPendingAsCompleted(pending);
 
-            var workout = new Workout();
-            workout.Member = pending.Member;
-            workout.WorkoutInformation = pending.DailyWorkout.WorkoutInformation;
-            workout.Time = time;
+                var workout = new Workout();
+                workout.Member = pending.Member;
+                workout.WorkoutInformation = pending.DailyWorkout.WorkoutInformation;
+                workout.Time = time;
 
-            var member = this.memberService.GetById(pending.Member.Id);
+                var member = this.memberService.GetById(pending.Member.Id);
 
-            this.memberService.AddWorkout(member, workout);
+                this.memberService.AddWorkout(member, workout);
 
-            return this.RedirectToAction("All");
+                return this.RedirectToAction("All");
+            }
+
+            return this.View(model.Id);
         }
     }
 }

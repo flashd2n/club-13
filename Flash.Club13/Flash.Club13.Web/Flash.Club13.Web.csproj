@@ -231,6 +231,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Attributes\AjaxOnlyAttribute.cs" />
+    <Compile Include="Infrastructure\Attributes\ExerciseSelectAttribute.cs" />
+    <Compile Include="Infrastructure\Attributes\WeekDateSelectAttribute.cs" />
     <Compile Include="Infrastructure\Automapper\IMapFrom.cs" />
     <Compile Include="Infrastructure\Automapper\QueriableExtensions.cs" />
     <Compile Include="Infrastructure\Automapper\ÌHaveCustomMappings.cs" />

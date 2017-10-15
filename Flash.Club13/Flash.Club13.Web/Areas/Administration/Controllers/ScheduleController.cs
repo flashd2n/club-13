@@ -70,6 +70,7 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(DailyWorkoutViewModel dailyWorkout)
         {
             var wodInfo = this.workoutInformationService.GetByName(dailyWorkout.Name);

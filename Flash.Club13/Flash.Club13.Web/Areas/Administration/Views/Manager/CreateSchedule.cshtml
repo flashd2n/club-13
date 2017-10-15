@@ -5,11 +5,47 @@
 
 @using (Html.BeginForm("CreateSchedule", "Manager", new { Area = "Administration" }, FormMethod.Post, null))
 {
+    @Html.AntiForgeryToken()
+
     @Html.LabelFor(x => x.WeekStart)
     @Html.EditorFor(x => x.WeekStart)
+    @Html.ValidationMessageFor(x => x.WeekStart)
 
     @Html.LabelFor(x => x.WeekEnd)
     @Html.EditorFor(x => x.WeekEnd)
+    @Html.ValidationMessageFor(x => x.WeekEnd)
 
     <button type="submit">Create!</button>
+
+    <p id="Date-error" class="field-validation-error">
+        <span>Please select Start date lower than End date</span>
+    </p>
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        var declarationsError = $('#Date-error');
+
+        declarationsError.hide();
+
+        $('form').submit(function (ev) {
+
+            var start = $('#WeekStart').val();
+            var end = $('#WeekEnd').val();
+
+            var startTime = new Date(start);
+            var endTime = new Date(end);
+
+            if (startTime > endTime) {
+                declarationsError.show();
+                return false;
+            } else {
+                return true;
+            }
+        });
+        
+
+    </script>
 }
