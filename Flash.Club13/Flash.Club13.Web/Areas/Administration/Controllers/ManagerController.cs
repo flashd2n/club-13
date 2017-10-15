@@ -121,5 +121,10 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
             return this.RedirectToAction("CreateSchedule");
             
         }
+
+        public ActionResult AllUsers()
+        {
+            return this.View("AllUsers");
+        }
     }
 }
