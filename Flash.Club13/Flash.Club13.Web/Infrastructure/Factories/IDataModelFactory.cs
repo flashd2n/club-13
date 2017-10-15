@@ -10,6 +10,6 @@ namespace Flash.Club13.Web.Infrastructure.Factories
     public interface IDataModelFactory
     {
         Workout CreateWorkout();
-        PendingWorkout CreatePendingWorkout(DailyWorkout dailyWorkout, Member member, bool isCompleted);
+        PendingWorkout CreatePendingWorkout();
     }
 }

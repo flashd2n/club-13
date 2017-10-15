@@ -123,7 +123,10 @@ namespace Flash.Club13.Web.Controllers
 
             this.dailyWorkoutService.AddMemberToDailyWorkout(loggedMember, dailyWoD);
 
-            var pending = this.dataModelFactory.CreatePendingWorkout(dailyWoD, loggedMember, false);
+            var pending = this.dataModelFactory.CreatePendingWorkout();
+            pending.DailyWorkout = dailyWoD;
+            pending.Member = loggedMember;
+            pending.IsCompleted = false;
 
             this.memberService.AddPending(loggedMember, pending);
 
