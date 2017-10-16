@@ -25,16 +25,16 @@ namespace Flash.Club13.Web.Controllers
 
         public WorkoutController(IMapper mapper, IWorkoutInformationService workoutInformationService, IWeekScheduleService weekScheduleService, IDatetimeProvider datetimeProvider, IDailyWorkoutService dailyWorkoutService, IMemberIdProvider memberIdProvider, IMemberService memberService, IWorkoutService workoutService, IModelViewFactory modelViewFactory, IDataModelFactory dataModelFactory)
         {
-            this.mapper = mapper;
-            this.workoutInformationService = workoutInformationService;
-            this.weekScheduleService = weekScheduleService;
-            this.datetimeProvider = datetimeProvider;
-            this.dailyWorkoutService = dailyWorkoutService;
-            this.memberIdProvider = memberIdProvider;
-            this.memberService = memberService;
-            this.workoutService = workoutService;
-            this.modelViewFactory = modelViewFactory;
-            this.dataModelFactory = dataModelFactory;
+            this.mapper = mapper ?? throw new ArgumentException("Mapper cannot be null");
+            this.workoutInformationService = workoutInformationService ?? throw new ArgumentException("workoutInformationService cannot be null");
+            this.weekScheduleService = weekScheduleService ?? throw new ArgumentException("weekScheduleService cannot be null");
+            this.datetimeProvider = datetimeProvider ?? throw new ArgumentException("datetimeProvider cannot be null");
+            this.dailyWorkoutService = dailyWorkoutService ?? throw new ArgumentException("dailyWorkoutService cannot be null");
+            this.memberIdProvider = memberIdProvider ?? throw new ArgumentException("memberIdProvider cannot be null");
+            this.memberService = memberService ?? throw new ArgumentException("memberService cannot be null");
+            this.workoutService = workoutService ?? throw new ArgumentException("workoutService cannot be null");
+            this.modelViewFactory = modelViewFactory ?? throw new ArgumentException("modelViewFactory cannot be null");
+            this.dataModelFactory = dataModelFactory ?? throw new ArgumentException("dataModelFactory cannot be null");
         }
 
         [OutputCache(Duration = 42)]
@@ -110,10 +110,10 @@ namespace Flash.Club13.Web.Controllers
         [HttpPost]
         public ActionResult SignUpForWorkout(Guid SelectedWoDId)
         {
-            if (SelectedWoDId == default(Guid))
-            {
-                return this.RedirectToAction("SignUpForWorkout");
-            }
+            //if (SelectedWoDId == default(Guid))
+            //{
+            //    return this.RedirectToAction("SignUpForWorkout");
+            //}
 
             var dailyWoD = this.dailyWorkoutService.GetById(SelectedWoDId);
 
