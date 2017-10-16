@@ -21,12 +21,12 @@ namespace Flash.Club13.Web.Controllers
 
         public CompleteWorkoutController(IMemberIdProvider memberIdProvider, IMemberService memberService, IMapper mapper, IPendingWorkoutService pendingWorkoutService, IModelViewFactory modelViewFactory, IDataModelFactory dataModelFactory)
         {
-            this.memberIdProvider = memberIdProvider;
-            this.memberService = memberService;
-            this.mapper = mapper;
-            this.pendingWorkoutService = pendingWorkoutService;
-            this.modelViewFactory = modelViewFactory;
-            this.dataModelFactory = dataModelFactory;
+            this.memberIdProvider = memberIdProvider ?? throw new ArgumentException("MemberIdProvider cannot be null");
+            this.memberService = memberService ?? throw new ArgumentException("memberService cannot be null");
+            this.mapper = mapper ?? throw new ArgumentException("mapper cannot be null");
+            this.pendingWorkoutService = pendingWorkoutService ?? throw new ArgumentException("pendingWorkoutService cannot be null");
+            this.modelViewFactory = modelViewFactory ?? throw new ArgumentException("modelViewFactory cannot be null");
+            this.dataModelFactory = dataModelFactory ?? throw new ArgumentException("dataModelFactory cannot be null");
         }
 
         public ActionResult All()
