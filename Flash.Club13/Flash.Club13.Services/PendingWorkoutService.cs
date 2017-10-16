@@ -15,8 +15,8 @@ namespace Flash.Club13.Services
 
         public PendingWorkoutService(IEfRepostory<PendingWorkout> pendingWorkoutsRepo, IUnitOfWork unitOfWork)
         {
-            this.pendingWorkoutsRepo = pendingWorkoutsRepo;
-            this.unitOfWork = unitOfWork;
+            this.pendingWorkoutsRepo = pendingWorkoutsRepo ?? throw new ArgumentException("PendingWorkout repo cannot be null");
+            this.unitOfWork = unitOfWork ?? throw new ArgumentException("Unit of work cannot be null");
         }
 
         public ICollection<PendingWorkout> GetAll()
@@ -31,18 +31,33 @@ namespace Flash.Club13.Services
 
         public void Update(PendingWorkout pendingWorkout)
         {
+            if (pendingWorkout == null)
+            {
+                throw new ArgumentException("PendingWorkout cannot be null");
+            }
+
             this.pendingWorkoutsRepo.Update(pendingWorkout);
             this.unitOfWork.Commit();
         }
 
         public void AddPending(PendingWorkout pendingWorkout)
         {
+            if (pendingWorkout == null)
+            {
+                throw new ArgumentException("PendingWorkout cannot be null");
+            }
+
             this.pendingWorkoutsRepo.Add(pendingWorkout);
             this.unitOfWork.Commit();
         }
 
         public void MarkPendingAsCompleted(PendingWorkout pendingWorkout)
         {
+            if (pendingWorkout == null)
+            {
+                throw new ArgumentException("PendingWorkout cannot be null");
+            }
+
             pendingWorkout.IsCompleted = true;
             this.Update(pendingWorkout);
         }
