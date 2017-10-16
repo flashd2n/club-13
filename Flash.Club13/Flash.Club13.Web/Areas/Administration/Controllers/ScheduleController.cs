@@ -21,11 +21,11 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
 
         public ScheduleController(IMapper mapper, IWeekScheduleService weekScheduleService, IWorkoutInformationService workoutInformationService, IDailyWorkoutService dailyWorkoutService, IModelViewFactory modelViewFactory)
         {
-            this.mapper = mapper;
-            this.weekScheduleService = weekScheduleService;
-            this.workoutInformationService = workoutInformationService;
-            this.dailyWorkoutService = dailyWorkoutService;
-            this.modelViewFactory = modelViewFactory;
+            this.mapper = mapper ?? throw new ArgumentException("Mapper cannot be null");
+            this.weekScheduleService = weekScheduleService ?? throw new ArgumentException("weekScheduleService cannot be null");
+            this.workoutInformationService = workoutInformationService ?? throw new ArgumentException("workoutInformationService cannot be null");
+            this.dailyWorkoutService = dailyWorkoutService ?? throw new ArgumentException("dailyWorkoutService cannot be null");
+            this.modelViewFactory = modelViewFactory ?? throw new ArgumentException("modelViewFactory cannot be null");
         }
 
         public ActionResult All()

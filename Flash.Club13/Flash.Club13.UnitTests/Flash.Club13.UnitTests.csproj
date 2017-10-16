@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ManagerControllerTests.cs" />
+    <Compile Include="Controllers\ScheduleControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DailyWorkoutServiceTests.cs" />
     <Compile Include="Services\ExerciseServiceTests.cs" />
