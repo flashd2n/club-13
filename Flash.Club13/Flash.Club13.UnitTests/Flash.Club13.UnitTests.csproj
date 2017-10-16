@@ -83,6 +83,7 @@
     <Compile Include="Services\ExerciseServiceTests.cs" />
     <Compile Include="Services\MemberServiceTests.cs" />
     <Compile Include="Services\PendingWorkoutServiceTests.cs" />
+    <Compile Include="Services\WeekScheduleServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -98,6 +99,10 @@
     <ProjectReference Include="..\Flash.Club13.Interfaces.Data\Flash.Club13.Interfaces.Data.csproj">
       <Project>{097ECC9A-12C0-448A-949B-AB58B9259882}</Project>
       <Name>Flash.Club13.Interfaces.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Flash.Club13.Interfaces.Providers\Flash.Club13.Interfaces.Providers.csproj">
+      <Project>{8D0A6E1A-857C-4535-856D-600C1EEC3E2E}</Project>
+      <Name>Flash.Club13.Interfaces.Providers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Flash.Club13.Models\Flash.Club13.Models.csproj">
       <Project>{9F035D14-52D1-455D-98D6-BEB76B096272}</Project>

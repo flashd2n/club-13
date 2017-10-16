@@ -19,9 +19,9 @@ namespace Flash.Club13.Services
 
         public WeekScheduleService(IEfRepostory<WeekSchedule> weekScheduleRepo, IUnitOfWork unitOfWork, IDatetimeProvider datetimeProvider)
         {
-            this.weekScheduleRepo = weekScheduleRepo;
-            this.unitOfWork = unitOfWork;
-            this.datetimeProvider = datetimeProvider;
+            this.weekScheduleRepo = weekScheduleRepo ?? throw new ArgumentException("WeekSchedule repo cannot be null");
+            this.unitOfWork = unitOfWork ?? throw new ArgumentException("UnitOfWork cannot be null");
+            this.datetimeProvider = datetimeProvider ?? throw new ArgumentException("DateTime provider cannot be null");
         }
 
         public ICollection<WeekSchedule> GetAll()
@@ -50,18 +50,33 @@ namespace Flash.Club13.Services
 
         public void Update(WeekSchedule weekSchedule)
         {
+            if (weekSchedule == null)
+            {
+                throw new ArgumentException("Week Schedule cannot be null");
+            }
+
             this.weekScheduleRepo.Update(weekSchedule);
             this.unitOfWork.Commit();
         }
 
         public void AddWeekSchedule(WeekSchedule weekSchedule)
         {
+            if (weekSchedule == null)
+            {
+                throw new ArgumentException("Week Schedule cannot be null");
+            }
+
             this.weekScheduleRepo.Add(weekSchedule);
             this.unitOfWork.Commit();
         }
 
         public void AddDailiesToSchedule(WeekSchedule schedule, params DailyWorkout[] workouts)
         {
+            if (schedule == null)
+            {
+                throw new ArgumentException("Week Schedule cannot be null");
+            }
+
             foreach (var wod in workouts)
             {
                 schedule.DailyWorkouts.Add(wod);
