@@ -1,4 +1,4 @@
-# ReadMe
+# Club 13
 A course project for ASP .NET MVC course in Telerik Academy
 ## Summary
 This app serves the needs of Sports Club 13. This is a sports club for high intensity interval training, crossfit and olympic weight-lifting. The app helps the regular members keep track of the club's schedule, various workouts, exercises and also their personal stats. The trainers can use the app to create and manage training schedules and individual workouts.
