@@ -17,12 +17,17 @@ namespace Flash.Club13.Services
 
         public MemberService(IEfRepostory<Member> membersRepo, IUnitOfWork unitOfWork)
         {
-            this.membersRepo = membersRepo;
-            this.unitOfWork = unitOfWork;
+            this.membersRepo = membersRepo ?? throw new ArgumentException("Members repo cannot be null");
+            this.unitOfWork = unitOfWork ?? throw new ArgumentException("Unit of work cannot be null");
         }
 
         public Member GetByUserId(string id)
         {
+            if (id == null)
+            {
+                throw new ArgumentException("Provided Id is not valid");
+            }
+
             return this.membersRepo.All.FirstOrDefault(x => x.UserId == id);
         }
 
@@ -38,18 +43,43 @@ namespace Flash.Club13.Services
 
         public void Update(Member member)
         {
+            if (member == null)
+            {
+                throw new ArgumentException("Member cannot be null");
+            }
+
             this.membersRepo.Update(member);
             this.unitOfWork.Commit();
         }
 
         public void AddPending(Member member, PendingWorkout workout)
         {
+            if (member == null)
+            {
+                throw new ArgumentException("Member cannot be null");
+            }
+
+            if (workout == null)
+            {
+                throw new ArgumentException("Workout cannot be null");
+            }
+
             member.PendingWorkouts.Add(workout);
             this.Update(member);
         }
 
         public void AddWorkout(Member member, Workout workout)
         {
+            if (member == null)
+            {
+                throw new ArgumentException("Member cannot be null");
+            }
+
+            if (workout == null)
+            {
+                throw new ArgumentException("Workout cannot be null");
+            }
+
             member.Workouts.Add(workout);
             this.Update(member);
         }
