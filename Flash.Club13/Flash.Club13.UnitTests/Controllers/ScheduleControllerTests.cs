@@ -377,5 +377,72 @@ namespace Flash.Club13.UnitTests.Controllers
             Assert.AreSame(dailyWorkoutViewModel, scheduleViewModel.AllWorkouts[dailyWorkoutViewModel.Day]);
         }
 
+        [Test]
+        public void Edit_ShouldReturnCorrectJson()
+        {
+            var mapperStub = new Mock<IMapper>();
+            var weekScheduleServiceStub = new Mock<IWeekScheduleService>();
+            var workoutInformationServiceStub = new Mock<IWorkoutInformationService>();
+            var modelViewFactoryStub = new Mock<IModelViewFactory>();
+            var dailyWorkoutServiceStub = new Mock<IDailyWorkoutService>();
+
+            var sut = new ScheduleController(mapperStub.Object, weekScheduleServiceStub.Object, workoutInformationServiceStub.Object, dailyWorkoutServiceStub.Object, modelViewFactoryStub.Object);
+
+            var dailyWorkout = new DailyWorkoutViewModel();
+            dailyWorkout.Name = "awesomeness";
+            dailyWorkout.ScheduleId = new Guid();
+
+            var wodInfo = new WorkoutInformation();
+            var wodDataModel = new DailyWorkout();
+            var schedule = new WeekSchedule();
+
+
+            workoutInformationServiceStub.Setup(x => x.GetByName(It.IsAny<string>())).Returns(wodInfo);
+            mapperStub.Setup(x => x.Map<DailyWorkout>(It.IsAny<DailyWorkoutViewModel>())).Returns(wodDataModel);
+            dailyWorkoutServiceStub.Setup(x => x.AddAllDailyWorkouts(It.IsAny<DailyWorkout>(), It.IsAny<DailyWorkout>(), It.IsAny<DailyWorkout>()));
+            weekScheduleServiceStub.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(schedule);
+            weekScheduleServiceStub.Setup(x => x.AddDailiesToSchedule(It.IsAny<WeekSchedule>(), It.IsAny<DailyWorkout>(), It.IsAny<DailyWorkout>(), It.IsAny<DailyWorkout>()));
+
+            sut
+                .WithCallTo(c => c.Edit(dailyWorkout))
+                .ShouldReturnJson();
+
+
+        }
+
+        [Test]
+        public void Edit_ShouldReturnCorrectJsonWhenModelInvalid()
+        {
+            var mapperStub = new Mock<IMapper>();
+            var weekScheduleServiceStub = new Mock<IWeekScheduleService>();
+            var workoutInformationServiceStub = new Mock<IWorkoutInformationService>();
+            var modelViewFactoryStub = new Mock<IModelViewFactory>();
+            var dailyWorkoutServiceStub = new Mock<IDailyWorkoutService>();
+
+            var sut = new ScheduleController(mapperStub.Object, weekScheduleServiceStub.Object, workoutInformationServiceStub.Object, dailyWorkoutServiceStub.Object, modelViewFactoryStub.Object);
+
+            var dailyWorkout = new DailyWorkoutViewModel();
+            dailyWorkout.Name = "awesomeness";
+            dailyWorkout.ScheduleId = new Guid();
+
+            var wodInfo = new WorkoutInformation();
+            var wodDataModel = new DailyWorkout();
+            var schedule = new WeekSchedule();
+
+
+            workoutInformationServiceStub.Setup(x => x.GetByName(It.IsAny<string>())).Returns(wodInfo);
+            mapperStub.Setup(x => x.Map<DailyWorkout>(It.IsAny<DailyWorkoutViewModel>())).Returns(wodDataModel);
+            dailyWorkoutServiceStub.Setup(x => x.AddAllDailyWorkouts(It.IsAny<DailyWorkout>(), It.IsAny<DailyWorkout>(), It.IsAny<DailyWorkout>()));
+            weekScheduleServiceStub.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(schedule);
+            weekScheduleServiceStub.Setup(x => x.AddDailiesToSchedule(It.IsAny<WeekSchedule>(), It.IsAny<DailyWorkout>(), It.IsAny<DailyWorkout>(), It.IsAny<DailyWorkout>()));
+
+            sut
+                .WithModelErrors()
+                .WithCallTo(c => c.Edit(dailyWorkout))
+                .ShouldReturnJson();
+
+
+        }
+
     }
 }
