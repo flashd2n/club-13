@@ -3,6 +3,7 @@ using Flash.Club13.Interfaces.Services;
 using Flash.Club13.Models;
 using Flash.Club13.Web.Areas.Administration.Models;
 using Flash.Club13.Web.Infrastructure.Factories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -20,11 +21,11 @@ namespace Flash.Club13.Web.Areas.Administration.Controllers
 
         public ManagerController(IMapper mapper, IExerciseService exerciseService, IWorkoutInformationService workoutInformationService, IWeekScheduleService weekScheduleService, IModelViewFactory modelViewFactory)
         {
-            this.mapper = mapper;
-            this.exerciseService = exerciseService;
-            this.workoutInformationService = workoutInformationService;
-            this.weekScheduleService = weekScheduleService;
-            this.modelViewFactory = modelViewFactory;
+            this.mapper = mapper ?? throw new ArgumentException("Mapper cannot be null");
+            this.exerciseService = exerciseService ?? throw new ArgumentException("exerciseService cannot be null");
+            this.workoutInformationService = workoutInformationService ?? throw new ArgumentException("workoutInformationService cannot be null");
+            this.weekScheduleService = weekScheduleService ?? throw new ArgumentException("weekScheduleService cannot be null");
+            this.modelViewFactory = modelViewFactory ?? throw new ArgumentException("modelViewFactory cannot be null");
         }
 
         public ActionResult Index()
