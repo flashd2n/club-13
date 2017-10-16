@@ -16,8 +16,8 @@ namespace Flash.Club13.Web.Controllers
 
         public PublicScheduleController(IMapper mapper, IWeekScheduleService weekScheduleService)
         {
-            this.mapper = mapper;
-            this.weekScheduleService = weekScheduleService;
+            this.mapper = mapper ?? throw new ArgumentException("Mapper cannot be null");
+            this.weekScheduleService = weekScheduleService ?? throw new ArgumentException("Mapper cannot be null");
         }
 
         public ActionResult Current()
