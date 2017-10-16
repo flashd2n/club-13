@@ -56,7 +56,7 @@ namespace Flash.Club13.Web.Controllers
                 return this.PartialView("_WoDPartial");
             }
 
-            var bestTime = this.workoutService.GetBestTime(currentWorkout);
+            var bestTime = this.workoutService.GetBestTimeDaily(currentWorkout);
 
             var workoutDetails = currentWorkout.WorkoutInformation;
 

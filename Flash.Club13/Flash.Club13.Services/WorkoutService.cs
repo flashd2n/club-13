@@ -17,24 +17,34 @@ namespace Flash.Club13.Services
 
         public WorkoutService(IEfRepostory<Workout> workoutsRepo, IUnitOfWork unitOfWork)
         {
-            this.workoutsRepo = workoutsRepo;
-            this.unitOfWork = unitOfWork;
+            this.workoutsRepo = workoutsRepo ?? throw new ArgumentException("Workouts repo cannot be null");
+            this.unitOfWork = unitOfWork ?? throw new ArgumentException("Unit fo work cannot be null");
         }
 
-        public TimeSpan? GetBestTime(DailyWorkout dailyWorkout)
+        public TimeSpan? GetBestTimeDaily(DailyWorkout dailyWorkout)
         {
+            if (dailyWorkout == null)
+            {
+                throw new ArgumentException("Daily workout cannot be null");
+            }
+
             return this.workoutsRepo.All
                 .Where(x => x.WorkoutInformation.Name == dailyWorkout.WorkoutInformation.Name)
-                .OrderByDescending(x => x.Time)
+                .OrderBy(x => x.Time)
                 .Select(x => x.Time)
                 .FirstOrDefault();
         }
 
         public TimeSpan? GetBestTime(WorkoutInformation workout)
         {
+            if (workout == null)
+            {
+                throw new ArgumentException("Workout cannot be null");
+            }
+
             return this.workoutsRepo.All
                 .Where(x => x.WorkoutInformation.Name == workout.Name)
-                .OrderByDescending(x => x.Time)
+                .OrderBy(x => x.Time)
                 .Select(x => x.Time)
                 .FirstOrDefault();
         }
