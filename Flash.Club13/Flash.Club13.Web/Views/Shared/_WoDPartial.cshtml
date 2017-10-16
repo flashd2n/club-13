@@ -1,23 +1,35 @@
 ﻿@using Flash.Club13.Web.Models.Home
 @model WoDViewModel
-
+<hr />
 @if (Model != null)
 {
-    <h2>@Model.Name</h2>
-    <p>@Model.Description</p>
-    if (Model.Exercises.Count != 0)
-    {
-        <h3>Exercises:</h3>
-    }
-    <ul>
-        @foreach (var exercise in Model.Exercises)
+    <div class="col-md-4">
+        <h2>@Model.Name</h2>
+        <p>@Model.Description</p>
+    </div>
+    <div class="col-md-4">
+        @if (Model.Exercises.Count != 0)
         {
-            <li>@exercise.Name</li>
+            <h3>Exercises:</h3>
         }
-    </ul>
-    <h2>Best Time</h2>
-    @Html.DisplayFor(x => x.BestTime)
-} else
+        <ul>
+            @foreach (var exercise in Model.Exercises)
+                {
+                <li>@exercise.Name</li>
+            }
+        </ul>
+
+    </div>
+        <div class="col-md-4">
+            <h2>Best Time</h2>
+            <div class="highlight">
+                @Html.DisplayFor(x => x.BestTime)
+            </div>
+            
+        </div>
+
+}
+else
 {
     <p>No workout today!</p>
 }

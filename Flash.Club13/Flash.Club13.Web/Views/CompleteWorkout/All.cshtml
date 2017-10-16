@@ -1,10 +1,12 @@
 ﻿@using Flash.Club13.Web.Models.CompleteWorkout
 @model AllPendingViewModel
 
-<h1>All Workouts Pending Completion</h1>
+<h2>All Workouts Pending Completion</h2>
 @foreach(var workout in Model.AllWorkouts)
 {
-    <h2>From: @workout.CreatedOn</h2>
-    <h3>Workout: @workout.Name</h3>
-    @Html.ActionLink("Complete", "Complete", "CompleteWorkout", new { Area = "", id = workout.Id }, new { });
+    <hr />
+    var date = workout.CreatedOn.Date;
+    <h3>From: @date</h3>
+    <h4>Workout: @workout.Name</h4>
+    @Html.ActionLink("Complete", "Complete", "CompleteWorkout", new { Area = "", id = workout.Id }, new {@class = "btn btn-default" });
 }

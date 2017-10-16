@@ -4,19 +4,30 @@
 <h1>Complete Workout</h1>
 @using (Html.BeginForm("Complete", "CompleteWorkout", new { Area = "" }, FormMethod.Post, null))
 {
-    @Html.AntiForgeryToken()
-    <input type="hidden" name="Id" value=@Model.Id>
-    @Html.LabelFor(x => x.Minutes)
-    @Html.EditorFor(x => x.Minutes)
-    @Html.ValidationMessageFor(x => x.Minutes);
+    <div class="form-group">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="Id" value=@Model.Id>
+        @Html.LabelFor(x => x.Minutes, new { @class = "control-label" })
+        @Html.EditorFor(x => x.Minutes, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Minutes)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Seconds, new { @class = "control-label" })
+        @Html.EditorFor(x => x.Seconds, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Seconds)
+    </div>
+        <button type="submit" class="btn btn-default">Complete!</button>
 
-    @Html.LabelFor(x => x.Seconds)
-    @Html.EditorFor(x => x.Seconds)
-    @Html.ValidationMessageFor(x => x.Seconds)
-    <button type="submit">Complete!</button>
 }
 
 @section Scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+
+@*<div class="form-group">
+        <label class="control-label" for="inputDefault">Default input</label>
+        <input type="text" class="form-control" id="inputDefault">
+    </div>*@

@@ -2,32 +2,39 @@
 @model CurrentScheduleViewModel
 
 <h1>This week's schedule</h1>
-<h2>Start: @Html.DisplayFor(x => x.WeekStart) -> End: @Html.DisplayFor(x => x.WeekEnd)</h2>
+@*<h3>Start: @Html.DisplayFor(x => x.WeekStart) -> End: @Html.DisplayFor(x => x.WeekEnd)</h3>*@
 
-<h2>Monday</h2>
-@Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Monday" } })
-<br />
+<div class="row">
+    <div class="col-md-3">
+        <h3>Monday</h3>
+        @Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Monday" } })
+    </div>
+    <div class="col-md-3">
+        <h3>Tuesday</h3>
+        @Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Tuesday" } })
+    </div>
+    <div class="col-md-3">
+        <h3>Wednesday</h3>
+        @Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Wednesday" } })
+    </div>
+    <div class="col-md-3">
+        <h3>Thursday</h3>
+        @Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Thursday" } })
+    </div>
+</div>
 
-<h2>Tuesday</h2>
-@Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Tuesday" } })
-<br />
-
-<h2>Wednesday</h2>
-@Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Wednesday" } })
-<br />
-
-<h2>Thursday</h2>
-@Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Thursday" } })
-<br />
-
-<h2>Friday</h2>
-@Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Friday" } })
-<br />
-
-<h2>Saturday</h2>
-@Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Saturday" } })
-<br />
-
-<h2>Sunday</h2>
-@Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Sunday" } })
-<br />
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <h3>Friday</h3>
+        @Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Friday" } })
+    </div>
+    <div class="col-md-4">
+        <h3>Saturday</h3>
+        @Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Saturday" } })
+    </div>
+    <div class="col-md-4">
+        <h3>Sunday</h3>
+        @Html.Partial("_CurrentScheduleDayPartial", Model, new ViewDataDictionary { { "day", "Sunday" } })
+    </div>
+</div>

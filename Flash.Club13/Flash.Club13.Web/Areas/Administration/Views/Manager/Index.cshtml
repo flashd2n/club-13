@@ -1,6 +1,9 @@
-﻿<h1>ADMINISTRATION HOME</h1>
-<p>@Html.ActionLink("Create Exercise", "CreateExercise", "Manager", new { Area = "Administration" }, new { })</p>
-<p>@Html.ActionLink("Create Workout", "CreateWorkout", "Manager", new { Area = "Administration"}, new { })</p>
-<p>@Html.ActionLink("Create Schedule", "CreateSchedule", "Manager", new { Area = "Administration" }, new { })</p>
-<p>@Html.ActionLink("View All Schedules", "All", "Schedule", new { Area = "Administration" }, new { })</p>
-<p>@Html.ActionLink("View All Members", "AllUsers", "Manager", new { Area = "Administration" }, new { })</p>
+﻿<h1>Administration Home</h1>
+<hr />
+<div class="btn-group btn-group-justified">
+    @Html.ActionLink("Create Exercise", "CreateExercise", "Manager", new { Area = "Administration" }, new { @class = "btn btn-default" })
+    @Html.ActionLink("Create Workout", "CreateWorkout", "Manager", new { Area = "Administration" }, new { @class = "btn btn-default" })
+    @Html.ActionLink("Create Schedule", "CreateSchedule", "Manager", new { Area = "Administration" }, new { @class = "btn btn-default" })
+    @Html.ActionLink("View All Schedules", "All", "Schedule", new { Area = "Administration" }, new { @class = "btn btn-default" })
+    @Html.ActionLink("View All Members", "AllUsers", "Manager", new { Area = "Administration" }, new { @class = "btn btn-default" })
+</div>

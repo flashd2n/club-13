@@ -13,9 +13,9 @@
         <div id="signUpWoDForm">
             @using (Ajax.BeginForm("SignUpForWorkout", "Workout", new AjaxOptions { HttpMethod = "POST", OnSuccess = "updateUi", UpdateTargetId = "signUpWoDForm", InsertionMode = InsertionMode.Replace }))
             {
-                @Html.DropDownListFor(model => model.SelectedWoDId, new SelectList(Model.AllDailyWoDs, "Id", "StartTime"), "- Please Select -")
+                @Html.DropDownListFor(model => model.SelectedWoDId, new SelectList(Model.AllDailyWoDs, "Id", "StartTime"), "- Please Select -", new { @class = "form-control" })
 
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Submit" class="btn btn-default" style="margin-top:10px;" />
             }
         </div>
 
