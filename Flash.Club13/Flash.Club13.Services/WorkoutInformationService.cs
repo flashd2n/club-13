@@ -17,8 +17,8 @@ namespace Flash.Club13.Services
 
         public WorkoutInformationService(IEfRepostory<WorkoutInformation> workoutInformationRepo, IUnitOfWork unitOfWork)
         {
-            this.workoutInformationRepo = workoutInformationRepo;
-            this.unitOfWork = unitOfWork;
+            this.workoutInformationRepo = workoutInformationRepo ?? throw new ArgumentException("WorkoutInformation repo cannot be null");
+            this.unitOfWork = unitOfWork ?? throw new ArgumentException("Unit of work cannot be null");
         }
 
         public ICollection<WorkoutInformation> GetAll()
@@ -33,23 +33,48 @@ namespace Flash.Club13.Services
 
         public WorkoutInformation GetByName(string name)
         {
+            if (name == null)
+            {
+                throw new ArgumentException("Name cannot be null");
+            }
+
             return this.workoutInformationRepo.All.FirstOrDefault(x => x.Name == name);
         }
 
         public void Update(WorkoutInformation workoutInformation)
         {
+            if (workoutInformation == null)
+            {
+                throw new ArgumentException("WorkoutInformation cannot be null");
+            }
+
             this.workoutInformationRepo.Update(workoutInformation);
             this.unitOfWork.Commit();
         }
 
         public void AddWorkoutInformation(WorkoutInformation workoutInformation)
         {
+            if (workoutInformation == null)
+            {
+                throw new ArgumentException("WorkoutInformation cannot be null");
+            }
+
             this.workoutInformationRepo.Add(workoutInformation);
             this.unitOfWork.Commit();
         }
 
         public void InsertMultipleExercisesToWorkoutInformation(WorkoutInformation workoutInformation, ICollection<Exercise> exercises)
         {
+            if (workoutInformation == null)
+            {
+                throw new ArgumentException("WorkoutInformation cannot be null");
+            }
+
+            if (exercises == null)
+            {
+                throw new ArgumentException("Exercises cannot be null");
+            }
+
             foreach (var exercise in exercises)
             {
                 workoutInformation.Exercises.Add(exercise);

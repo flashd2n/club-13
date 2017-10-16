@@ -84,6 +84,7 @@
     <Compile Include="Services\MemberServiceTests.cs" />
     <Compile Include="Services\PendingWorkoutServiceTests.cs" />
     <Compile Include="Services\WeekScheduleServiceTests.cs" />
+    <Compile Include="Services\WorkoutInformationServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
