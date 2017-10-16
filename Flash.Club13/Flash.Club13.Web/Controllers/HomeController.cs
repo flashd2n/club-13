@@ -18,9 +18,9 @@ namespace Flash.Club13.Web.Controllers
 
         public HomeController(IMemberService memberService, IWorkoutService workoutService, IModelViewFactory modelViewFactory)
         {
-            this.memberService = memberService;
-            this.workoutService = workoutService;
-            this.modelViewFactory = modelViewFactory;
+            this.memberService = memberService ?? throw new ArgumentException("Memeber service cannot be null");
+            this.workoutService = workoutService ?? throw new ArgumentException("workoutService cannot be null");
+            this.modelViewFactory = modelViewFactory ?? throw new ArgumentException("modelViewFactory cannot be null");
         }
 
         public ActionResult Index()
