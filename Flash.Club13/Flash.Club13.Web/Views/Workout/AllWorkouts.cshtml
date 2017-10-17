@@ -4,5 +4,7 @@
 <h1>All Workouts</h1>
 @foreach (var wod in Model.AllWorkouts)
 {
-    @Html.Partial("_WoDPartial", wod);
+    <div class="row">
+        @Html.Partial("_WoDPartial", wod);
+    </div>
 }
